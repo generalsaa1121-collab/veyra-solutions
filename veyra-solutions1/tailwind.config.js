@@ -4,59 +4,55 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: {
-          DEFAULT: '#0F1E3A',
-          deep: '#0A1628',
-          mid: '#1A3060',
-          light: '#2A4A7F',
-          tint: '#EEF2F8',
-          subtle: 'rgba(15,30,58,0.06)',
+        parchment: {
+          DEFAULT: '#F7F4EF',
+          warm: '#FDFAF6',
+          deep: '#EDE8DF',
+          darker: '#E0DAD0',
         },
-        charcoal: {
-          DEFAULT: '#2B2D31',
-          light: '#4A4C52',
-          muted: '#6B6E76',
+        stone: {
+          DEFAULT: '#C8C3BA',
+          dark: '#A8A39A',
+          muted: '#88837C',
+        },
+        graphite: {
+          DEFAULT: '#44403C',
+          light: '#78716C',
+          muted: '#A8A29E',
         },
         ink: {
-          DEFAULT: '#2B2D31',
-          muted: '#6B6E76',
-          light: '#9CA3AF',
+          DEFAULT: '#1C1917',
+          muted: '#57534E',
+          light: '#A8A29E',
         },
-        surface: {
-          DEFAULT: '#FFFFFF',
-          soft: '#F8F9FB',
-          mid: '#F0F2F5',
+        bronze: {
+          DEFAULT: '#9A7B4F',
+          light: '#C4A572',
+          pale: '#F0E6D3',
+          dark: '#7A5F38',
         },
-        border: {
-          DEFAULT: '#E2E5EB',
-          strong: '#CBD1DA',
-          navy: 'rgba(15,30,58,0.15)',
+        forest: {
+          DEFAULT: '#1E2D1F',
+          mid: '#263827',
+          light: '#3A5140',
+          muted: 'rgba(30,45,31,0.06)',
+        },
+        navy: {
+          DEFAULT: '#0F1E3A',
+          tint: '#EEF2F8',
         },
       },
       fontFamily: {
-        display: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        '2xs': ['0.625rem', { lineHeight: '1rem', letterSpacing: '0.12em' }],
+        '2xs': ['0.65rem', { lineHeight: '1rem', letterSpacing: '0.12em' }],
+        '3xs': ['0.55rem', { lineHeight: '0.875rem', letterSpacing: '0.15em' }],
       },
       spacing: {
         '18': '4.5rem',
         '22': '5.5rem',
-      },
-      animation: {
-        'fade-up': 'fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards',
-        'fade-in': 'fadeIn 0.5s ease-out forwards',
-      },
-      keyframes: {
-        fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
       },
     },
   },

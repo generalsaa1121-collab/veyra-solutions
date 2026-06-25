@@ -13,7 +13,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const handle = () => setScrolled(window.scrollY > 32)
+    const handle = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', handle, { passive: true })
     return () => window.removeEventListener('scroll', handle)
   }, [])
@@ -25,15 +25,15 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-white/95 backdrop-blur-sm border-b border-border shadow-sm'
+          ? 'bg-parchment/96 backdrop-blur-md border-b border-stone/50'
           : 'bg-transparent'
       }`}
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-navy focus:text-white focus:text-sm focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-ink focus:text-parchment focus:text-sm focus:font-medium"
       >
         Skip to content
       </a>
@@ -44,12 +44,13 @@ export default function Nav() {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8" aria-label="Primary">
+        <nav className="hidden md:flex items-center gap-9" aria-label="Primary navigation">
           {links.map((l) => (
             <a
               key={l.label}
               href={l.href}
-              className="text-sm font-medium text-charcoal-muted hover:text-navy transition-colors duration-200 cursor-pointer tracking-wide"
+              className="text-sm font-medium text-graphite hover:text-ink transition-colors duration-200 cursor-pointer"
+              style={{ letterSpacing: '0.01em' }}
             >
               {l.label}
             </a>
@@ -58,28 +59,29 @@ export default function Nav() {
 
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-2xs font-semibold tracking-[0.1em] uppercase text-white bg-navy hover:bg-navy-mid transition-colors duration-200 cursor-pointer"
+          className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-2xs font-semibold tracking-[0.12em] uppercase text-parchment bg-ink hover:bg-graphite transition-colors duration-200 cursor-pointer"
         >
           Schedule a Call
         </a>
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden p-2 cursor-pointer text-charcoal hover:text-navy transition-colors"
+          className="md:hidden p-2 cursor-pointer text-ink transition-colors"
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
         >
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
             {open ? (
               <>
-                <line x1="4" y1="4" x2="18" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <line x1="18" y1="4" x2="4" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="2" y1="2" x2="20" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="20" y1="2" x2="2" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </>
             ) : (
               <>
-                <line x1="3" y1="7" x2="19" y2="7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <line x1="3" y1="13" x2="19" y2="13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="0" y1="2" x2="22" y2="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="0" y1="9" x2="22" y2="9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="0" y1="16" x2="22" y2="16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </>
             )}
           </svg>
@@ -88,17 +90,17 @@ export default function Nav() {
 
       {/* Mobile drawer */}
       <div
-        className={`md:hidden bg-white border-t border-border overflow-hidden transition-all duration-300 ${
+        className={`md:hidden bg-parchment-warm border-t border-stone/40 overflow-hidden transition-all duration-300 ${
           open ? 'max-h-screen' : 'max-h-0'
         }`}
         aria-hidden={!open}
       >
-        <nav className="px-6 pt-6 pb-8 flex flex-col gap-5" aria-label="Mobile">
+        <nav className="px-6 pt-7 pb-9 flex flex-col gap-6" aria-label="Mobile navigation">
           {links.map((l) => (
             <a
               key={l.label}
               href={l.href}
-              className="text-base font-medium text-charcoal hover:text-navy transition-colors duration-200 cursor-pointer"
+              className="text-lg font-medium text-ink hover:text-bronze transition-colors duration-200 cursor-pointer"
               onClick={() => setOpen(false)}
             >
               {l.label}
@@ -106,7 +108,7 @@ export default function Nav() {
           ))}
           <a
             href="#contact"
-            className="mt-3 inline-flex items-center justify-center px-6 py-3.5 text-2xs font-semibold tracking-[0.1em] uppercase text-white bg-navy cursor-pointer"
+            className="mt-2 inline-flex items-center justify-center px-6 py-3.5 text-2xs font-semibold tracking-[0.12em] uppercase text-parchment bg-ink cursor-pointer"
             onClick={() => setOpen(false)}
           >
             Schedule a Call

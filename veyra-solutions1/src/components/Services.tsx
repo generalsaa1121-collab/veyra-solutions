@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useInView } from '../hooks/useInView'
 
 const services = [
@@ -9,7 +10,7 @@ const services = [
     outcomes: [
       'Mobile-first, fast-loading design',
       'Clear service and location messaging',
-      'Inquiry-optimized page structure',
+      'Inquiry-optimized structure',
       'Built to rank in local search',
     ],
   },
@@ -49,19 +50,120 @@ const services = [
       'Performance dashboards',
     ],
   },
-  {
-    n: '05',
-    title: 'Digital Presence Improvements',
-    description:
-      'Beyond your website and Google listing, your broader digital footprint matters. We audit and strengthen every touchpoint a prospective customer might encounter.',
-    outcomes: [
-      'Online directory cleanup',
-      'NAP consistency across platforms',
-      'Reputation monitoring setup',
-      'Local citation building',
-    ],
-  },
 ]
+
+function ServicePanel({
+  service,
+  index,
+  visible,
+}: {
+  service: typeof services[0]
+  index: number
+  visible: boolean
+}) {
+  const [expanded, setExpanded] = useState(false)
+  return (
+    <div
+      className={`reveal ${visible ? 'visible' : ''}`}
+      style={{ transitionDelay: `${0.08 * index}s` }}
+    >
+      <div
+        className={`group relative border border-stone/40 p-8 lg:p-10 cursor-pointer transition-all duration-300 hover:border-bronze/60 hover:bg-parchment-warm ${
+          expanded ? 'border-bronze/60 bg-parchment-warm' : ''
+        }`}
+        onClick={() => setExpanded(!expanded)}
+        onKeyDown={(e) => e.key === 'Enter' && setExpanded(!expanded)}
+        role="button"
+        tabIndex={0}
+        aria-expanded={expanded}
+        aria-label={`${service.title} — click to expand`}
+      >
+        {/* Large ghost number — decorative */}
+        <div
+          className="absolute top-4 right-6 font-display font-bold text-stone/30 select-none pointer-events-none"
+          style={{ fontSize: 'clamp(4rem, 7vw, 6rem)', lineHeight: 1, letterSpacing: '-0.04em' }}
+          aria-hidden="true"
+        >
+          {service.n}
+        </div>
+
+        <div className="relative z-10">
+          {/* Service number + title */}
+          <div className="flex items-start justify-between gap-4 mb-5">
+            <div>
+              <span
+                className="block text-2xs font-medium text-bronze mb-3 font-body"
+                style={{ letterSpacing: '0.16em' }}
+              >
+                {service.n}
+              </span>
+              <h3
+                className="font-display text-ink"
+                style={{
+                  fontSize: 'clamp(1.15rem, 2vw, 1.4rem)',
+                  fontWeight: 500,
+                  letterSpacing: '-0.015em',
+                  lineHeight: 1.25,
+                }}
+              >
+                {service.title}
+              </h3>
+            </div>
+
+            {/* Expand toggle */}
+            <div
+              className="flex-shrink-0 w-7 h-7 border border-stone/60 flex items-center justify-center mt-1 transition-all duration-300 group-hover:border-bronze/60"
+              aria-hidden="true"
+              style={{
+                transform: expanded ? 'rotate(45deg)' : 'rotate(0deg)',
+                transition: 'transform 0.3s ease',
+              }}
+            >
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M5.5 1v9M1 5.5h9" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Description — always visible */}
+          <p
+            className="text-ink-muted font-light leading-relaxed pr-10"
+            style={{ fontSize: '0.9375rem', lineHeight: 1.8 }}
+          >
+            {service.description}
+          </p>
+
+          {/* Outcomes — expand on click */}
+          <div
+            style={{
+              maxHeight: expanded ? '300px' : '0',
+              opacity: expanded ? 1 : 0,
+              overflow: 'hidden',
+              transition: 'max-height 0.35s ease, opacity 0.3s ease',
+            }}
+          >
+            <div className="mt-7 pt-6 border-t border-stone/40">
+              <p
+                className="text-2xs font-semibold uppercase text-bronze mb-4 font-body"
+                style={{ letterSpacing: '0.16em' }}
+              >
+                What we deliver
+              </p>
+              <ul className="space-y-2.5">
+                {service.outcomes.map((o) => (
+                  <li key={o} className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-bronze flex-shrink-0" />
+                    <span className="text-sm text-ink-muted font-light">{o}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function Services() {
   const { ref, visible } = useInView()
@@ -70,84 +172,50 @@ export default function Services() {
     <section
       id="services"
       ref={ref as React.RefObject<HTMLElement>}
-      className="bg-surface border-t border-border py-28 lg:py-40"
+      className="bg-parchment-deep border-t border-stone/40 py-28 lg:py-40"
       aria-labelledby="services-heading"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
         {/* Header */}
-        <div className={`mb-20 reveal ${visible ? 'visible' : ''}`}>
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-8 h-px bg-navy" />
-            <span className="text-2xs font-semibold tracking-[0.18em] uppercase text-charcoal-muted font-display">
-              Services
-            </span>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
-            <h2
-              id="services-heading"
-              className="font-display font-bold text-navy text-balance"
-              style={{ fontSize: 'clamp(2rem, 3.8vw, 3.25rem)', letterSpacing: '-0.025em', lineHeight: 1.1 }}
-            >
-              Five disciplines. One goal.
-            </h2>
-            <p className="text-ink-muted font-light leading-relaxed self-end text-lg" style={{ letterSpacing: '-0.005em' }}>
-              Each service is designed to close a specific part of the visibility gap.
-              Most clients start with one and expand as results compound.
-            </p>
+        <div className={`mb-16 lg:mb-20 reveal ${visible ? 'visible' : ''}`}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-6 h-px bg-bronze" />
+                <span
+                  className="text-2xs font-semibold uppercase text-bronze"
+                  style={{ letterSpacing: '0.2em' }}
+                >
+                  Services
+                </span>
+              </div>
+              <h2
+                id="services-heading"
+                className="font-display text-ink text-balance"
+                style={{
+                  fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                  fontWeight: 500,
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.12,
+                }}
+              >
+                Four ways we strengthen your digital foundation.
+              </h2>
+            </div>
+            <div className="lg:col-span-4 lg:col-start-8 flex items-end">
+              <p className="text-ink-muted font-light leading-relaxed" style={{ fontSize: '0.9375rem', lineHeight: 1.8 }}>
+                Each service targets a specific point where local businesses lose
+                customers online. Click any panel to see what we deliver.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Service rows */}
-        <div className="border-t border-border">
-          {services.map((svc, i) => (
-            <div
-              key={svc.n}
-              className={`border-b border-border group reveal ${visible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${0.04 + i * 0.07}s` }}
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-
-                {/* Number */}
-                <div className="lg:col-span-1 flex items-start pt-8 lg:pt-12 px-0 lg:border-r border-border">
-                  <span
-                    className="text-2xs font-semibold tracking-[0.12em] text-border-strong font-display select-none"
-                    aria-hidden="true"
-                  >
-                    {svc.n}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="lg:col-span-11 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 px-0 lg:px-10 py-8 lg:py-12">
-                  <div className="lg:col-span-5">
-                    <h3
-                      className="font-display font-semibold text-navy mb-4 group-hover:text-navy-mid transition-colors duration-200"
-                      style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.4rem)', letterSpacing: '-0.015em' }}
-                    >
-                      {svc.title}
-                    </h3>
-                    <p className="text-ink-muted font-light leading-relaxed" style={{ fontSize: '0.9375rem' }}>
-                      {svc.description}
-                    </p>
-                  </div>
-
-                  <div className="lg:col-span-5 lg:col-start-8">
-                    <p className="text-2xs font-semibold tracking-[0.14em] uppercase text-charcoal-muted mb-5 font-display">
-                      What you get
-                    </p>
-                    <ul className="space-y-3">
-                      {svc.outcomes.map((o) => (
-                        <li key={o} className="flex items-start gap-3">
-                          <span className="mt-[0.45rem] w-1 h-1 bg-navy flex-shrink-0" aria-hidden="true" />
-                          <span className="text-sm text-ink-muted font-light">{o}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Service panels — 2×2 grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone/20">
+          {services.map((s, i) => (
+            <ServicePanel key={s.n} service={s} index={i} visible={visible} />
           ))}
         </div>
 

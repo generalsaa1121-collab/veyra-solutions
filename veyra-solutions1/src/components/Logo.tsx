@@ -1,77 +1,57 @@
-interface LogoMarkProps {
-  size?: number
-  color?: string
+interface LogoProps {
+  className?: string
+  inverted?: boolean
 }
 
-// Faithful recreation of the Veyra Solutions V mark:
-// Two angular arms form an elegant V. Each arm is a filled angular shape
-// (not a simple line stroke) creating the brand's clean geometric mark.
-// The interior negative space between the arms forms the V shape.
-export function LogoMark({ size = 40, color = '#0F1E3A' }: LogoMarkProps) {
+export function LogoMark({ size = 40, color = '#1C1917' }: { size?: number; color?: string }) {
   return (
     <svg
       width={size}
-      height={size}
+      height={Math.round(size * 1.09)}
       viewBox="0 0 44 48"
       fill="none"
       aria-hidden="true"
     >
-      {/* Left arm — angular parallelogram shape forming left side of V */}
-      <path
-        d="M0 0 L10 0 L22 38 L16 48 Z"
-        fill={color}
-      />
-      {/* Right arm — mirror of left arm */}
-      <path
-        d="M44 0 L34 0 L22 38 L28 48 Z"
-        fill={color}
-      />
-      {/* Top bridge — connects the two arms across the top, creating the open V */}
-      <path
-        d="M10 0 L34 0 L32 6 L12 6 Z"
-        fill={color}
-      />
+      <path d="M0 0 L10.5 0 L22 36 L16.5 48 Z" fill={color} />
+      <path d="M44 0 L33.5 0 L22 36 L27.5 48 Z" fill={color} />
+      <path d="M10.5 0 L33.5 0 L31.5 7 L12.5 7 Z" fill={color} />
     </svg>
   )
 }
 
-interface LogoProps {
-  className?: string
-  variant?: 'full' | 'mark'
-  color?: string
-  size?: 'sm' | 'md' | 'lg'
-}
-
-export default function Logo({ className = '', variant = 'full', color = '#0F1E3A' }: LogoProps) {
-  if (variant === 'mark') {
-    return <LogoMark color={color} />
-  }
+export default function Logo({ className = '', inverted = false }: LogoProps) {
+  const primary = inverted ? '#F7F4EF' : '#1C1917'
+  const sub = inverted ? 'rgba(247,244,239,0.5)' : '#9A7B4F'
 
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
-      <LogoMark size={30} color={color} />
-      <div className="flex flex-col justify-center leading-none gap-[3px]">
+    <div className={`inline-flex items-center gap-3 ${className}`} aria-label="Veyra Solutions">
+      <LogoMark size={26} color={primary} />
+      <div className="flex flex-col leading-none select-none">
         <span
-          className="font-display font-bold tracking-wide uppercase"
           style={{
+            fontFamily: '"Playfair Display", Georgia, serif',
+            fontWeight: 600,
             fontSize: '1rem',
-            letterSpacing: '0.08em',
+            letterSpacing: '0.06em',
+            color: primary,
             lineHeight: 1,
-            color,
           }}
         >
-          Veyra
+          VEYRA
         </span>
         <span
-          className="font-display font-semibold tracking-widest uppercase"
           style={{
-            fontSize: '0.62rem',
-            letterSpacing: '0.18em',
+            fontFamily: 'Inter, system-ui, sans-serif',
+            fontWeight: 500,
+            fontSize: '0.5rem',
+            letterSpacing: '0.24em',
+            color: sub,
             lineHeight: 1,
-            color,
+            marginTop: '4px',
+            textTransform: 'uppercase',
           }}
         >
-          Solutions
+          SOLUTIONS
         </span>
       </div>
     </div>
