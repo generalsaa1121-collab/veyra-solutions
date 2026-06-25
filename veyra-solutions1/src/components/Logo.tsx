@@ -17,8 +17,8 @@ export default function Logo({ className = '', inverted = false }: LogoProps) {
         style={{
           fontFamily: '"Playfair Display", Georgia, serif',
           fontWeight: 600,
-          fontSize: '1.1rem',
-          letterSpacing: '0.1em',
+          fontSize: '1.125rem',
+          letterSpacing: '0.12em',
           color: primary,
           lineHeight: 1,
           display: 'block',
@@ -30,11 +30,11 @@ export default function Logo({ className = '', inverted = false }: LogoProps) {
         style={{
           fontFamily: 'Inter, system-ui, sans-serif',
           fontWeight: 400,
-          fontSize: '0.52rem',
-          letterSpacing: '0.35em',
+          fontSize: '0.5rem',
+          letterSpacing: '0.3em',
           color: accent,
           lineHeight: 1,
-          marginTop: '5px',
+          marginTop: '4px',
           display: 'block',
           textTransform: 'uppercase',
         }}

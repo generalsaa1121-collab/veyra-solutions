@@ -505,11 +505,9 @@ function LiveDemo() {
 
   return (
     <div style={{
-      background: D.bg,
-      border:     '1px solid rgba(200,195,186,0.08)',
       width:      '100%',
-      maxWidth:   '410px',
-      boxShadow:  '0 32px 96px rgba(0,0,0,0.45), 0 8px 24px rgba(0,0,0,0.3)',
+      maxWidth:   '500px',
+      borderTop:  '1px solid rgba(154,123,79,0.2)',
     }}>
       {/* Header */}
       <div style={{
@@ -603,12 +601,16 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Dark right panel — full bleed */}
+      {/* Dark right panel — grid-aligned full bleed */}
+      {/* calc(50% + 99px) aligns the panel's left edge to the 5-col grid split at all viewport widths */}
       <div
         className="absolute right-0 top-0 bottom-0 hidden lg:block"
-        style={{ width: '50%', background: '#0D0B09' }}
+        style={{ width: 'calc(50% + 99px)', background: '#0D0B09' }}
         aria-hidden="true"
-      />
+      >
+        {/* Bronze separator — makes the division architecturally intentional */}
+        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '1px', background: 'rgba(154,123,79,0.18)' }} />
+      </div>
 
       {/* Content grid */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full pt-28 lg:pt-0 pb-16">
@@ -681,7 +683,7 @@ export default function Hero() {
               </a>
               <a
                 href="#services"
-                className="group inline-flex items-center gap-2.5 py-4 text-sm font-medium text-ink-muted hover:text-ink transition-colors duration-200 cursor-pointer"
+                className="group inline-flex items-center gap-2.5 py-4 text-sm font-medium text-ink-muted hover:text-ink transition-colors duration-200 cursor-pointer whitespace-nowrap"
               >
                 <span className="v-underline" style={{ paddingBottom: '1px' }}>See what we do</span>
                 <svg
@@ -705,8 +707,9 @@ export default function Hero() {
 
           {/* ── Right: live demo panel ── */}
           <div
-            className="hidden lg:flex lg:col-span-7 items-center justify-center py-16"
+            className="hidden lg:flex lg:col-span-7 items-center py-16"
             style={{
+              paddingLeft: '3.5rem',
               opacity:    mounted ? 1 : 0,
               transform:  mounted ? 'none' : 'translateY(12px)',
               transition: `opacity 0.6s ease 0.35s, transform 0.6s ${ease} 0.35s`,

@@ -28,7 +28,7 @@ export default function Nav() {
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
           ? 'bg-parchment/96 backdrop-blur-md border-b border-stone/50'
-          : 'bg-transparent'
+          : 'bg-parchment/88 backdrop-blur-sm'
       }`}
     >
       <a
@@ -39,7 +39,7 @@ export default function Nav() {
       </a>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between" style={{ height: '4.5rem' }}>
-        <a href="#" aria-label="Veyra Solutions home">
+        <a href="#main" aria-label="Veyra Solutions home">
           <Logo />
         </a>
 
