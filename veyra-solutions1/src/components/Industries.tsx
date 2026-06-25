@@ -89,10 +89,11 @@ export default function Industries() {
               style={{ transitionDelay: `${0.06 * i}s` }}
             >
               {/* Tag */}
-              <div className="mb-5">
+              <div className="mb-6 flex items-center gap-2.5">
+                <div className="w-3 h-px bg-bronze/50 flex-shrink-0" />
                 <span
-                  className="inline-block text-3xs font-semibold uppercase text-bronze/80 px-2 py-1 border border-bronze/25"
-                  style={{ letterSpacing: '0.18em' }}
+                  className="text-3xs font-medium uppercase text-bronze/70"
+                  style={{ letterSpacing: '0.16em' }}
                 >
                   {ind.tag}
                 </span>

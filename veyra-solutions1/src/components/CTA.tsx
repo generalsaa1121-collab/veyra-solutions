@@ -84,21 +84,24 @@ export default function CTA() {
             </p>
 
             <div
-              className={`flex flex-col sm:flex-row items-start gap-5 mt-12 reveal ${visible ? 'visible' : ''}`}
+              className={`flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-12 reveal ${visible ? 'visible' : ''}`}
               style={{ transitionDelay: '0.3s' }}
             >
               <a
                 href="mailto:hello@veyrasolutions.com"
-                className="inline-flex items-center justify-center px-10 py-4 text-2xs font-semibold tracking-[0.12em] uppercase text-ink bg-parchment hover:bg-parchment-deep transition-colors duration-200 cursor-pointer"
+                className="v-btn v-btn-light"
               >
                 Book a Discovery Call
+                <svg className="v-btn-arrow" width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                  <path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </a>
               <a
                 href="mailto:hello@veyrasolutions.com"
-                className="inline-flex items-center gap-2 py-4 text-sm font-light cursor-pointer transition-opacity duration-200 hover:opacity-80"
-                style={{ color: 'rgba(247,244,239,0.45)' }}
+                className="v-underline text-sm font-light cursor-pointer"
+                style={{ color: 'rgba(247,244,239,0.4)', paddingBottom: '1px' }}
               >
-                or email hello@veyrasolutions.com
+                hello@veyrasolutions.com
               </a>
             </div>
           </div>

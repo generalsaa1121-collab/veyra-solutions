@@ -49,8 +49,8 @@ export default function Nav() {
             <a
               key={l.label}
               href={l.href}
-              className="text-sm font-medium text-graphite hover:text-ink transition-colors duration-200 cursor-pointer"
-              style={{ letterSpacing: '0.01em' }}
+              className="v-underline v-underline-bronze text-sm font-medium text-graphite hover:text-ink transition-colors duration-200 cursor-pointer"
+              style={{ letterSpacing: '0.01em', paddingBottom: '2px' }}
             >
               {l.label}
             </a>
@@ -59,7 +59,7 @@ export default function Nav() {
 
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-2xs font-semibold tracking-[0.12em] uppercase text-parchment bg-ink hover:bg-graphite transition-colors duration-200 cursor-pointer"
+          className="v-btn v-btn-dark hidden md:inline-flex"
         >
           Schedule a Call
         </a>
@@ -108,7 +108,8 @@ export default function Nav() {
           ))}
           <a
             href="#contact"
-            className="mt-2 inline-flex items-center justify-center px-6 py-3.5 text-2xs font-semibold tracking-[0.12em] uppercase text-parchment bg-ink cursor-pointer"
+            className="mt-2 v-btn v-btn-dark inline-flex"
+            style={{ justifyContent: 'center', padding: '1rem 1.625rem' }}
             onClick={() => setOpen(false)}
           >
             Schedule a Call

@@ -139,3 +139,86 @@
     transform: translateY(0);
   }
 }
+
+/* ─── Veyra Design System ─── */
+
+/* Sweep underline — currentColor, reveals left→right on hover */
+.v-underline {
+  position: relative;
+}
+.v-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.v-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Bronze underline variant — underline is always bronze regardless of text color */
+.v-underline-bronze::after {
+  background: #9A7B4F;
+}
+
+/* Primary CTA button — shared base */
+.v-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, box-shadow 0.22s ease;
+}
+
+/* Light button — ink on parchment */
+.v-btn-light {
+  padding: 1.125rem 2.875rem;
+  background: #F7F4EF;
+  color: #1C1917;
+}
+.v-btn-light:hover {
+  background: #EDE8DF;
+  box-shadow: inset 0 0 0 1px rgba(154, 123, 79, 0.4);
+}
+
+/* Dark button — parchment on ink */
+.v-btn-dark {
+  padding: 0.75rem 1.625rem;
+  background: #1C1917;
+  color: #F7F4EF;
+}
+.v-btn-dark:hover {
+  background: #2C2826;
+  box-shadow: inset 0 0 0 1px rgba(154, 123, 79, 0.35);
+}
+
+/* Arrow icon inside buttons */
+.v-btn-arrow {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+.v-btn:hover .v-btn-arrow {
+  transform: translateX(3px);
+}
+
+/* Service card — inset top accent on hover/expanded */
+.v-service-card {
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+.v-service-card:hover,
+.v-service-card.is-expanded {
+  box-shadow: inset 0 2px 0 0 #9A7B4F;
+}

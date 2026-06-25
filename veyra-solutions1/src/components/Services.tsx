@@ -68,8 +68,8 @@ function ServicePanel({
       style={{ transitionDelay: `${0.08 * index}s` }}
     >
       <div
-        className={`group relative border border-stone/40 p-8 lg:p-10 cursor-pointer transition-all duration-300 hover:border-bronze/60 hover:bg-parchment-warm ${
-          expanded ? 'border-bronze/60 bg-parchment-warm' : ''
+        className={`v-service-card group relative border border-stone/40 p-8 lg:p-10 cursor-pointer hover:border-bronze/50 hover:bg-parchment-warm ${
+          expanded ? 'is-expanded border-bronze/50 bg-parchment-warm' : ''
         }`}
         onClick={() => setExpanded(!expanded)}
         onKeyDown={(e) => e.key === 'Enter' && setExpanded(!expanded)}
@@ -112,15 +112,21 @@ function ServicePanel({
 
             {/* Expand toggle */}
             <div
-              className="flex-shrink-0 w-7 h-7 border border-stone/60 flex items-center justify-center mt-1 transition-all duration-300 group-hover:border-bronze/60"
+              className="flex-shrink-0 mt-1.5"
               aria-hidden="true"
               style={{
+                width: '18px',
+                height: '18px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 transform: expanded ? 'rotate(45deg)' : 'rotate(0deg)',
-                transition: 'transform 0.3s ease',
+                transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                color: expanded ? '#9A7B4F' : 'currentColor',
               }}
             >
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                <path d="M5.5 1v9M1 5.5h9" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
               </svg>
             </div>
           </div>

@@ -149,12 +149,21 @@ export default function Process() {
         <div className={`mt-14 reveal ${visible ? 'visible' : ''}`} style={{ transitionDelay: '0.4s' }}>
           <a
             href="#contact"
-            className="inline-flex items-center gap-3 text-sm font-medium cursor-pointer transition-opacity duration-200 hover:opacity-70"
+            className="group inline-flex items-center gap-3 cursor-pointer"
             style={{ color: '#F7F4EF' }}
           >
-            <span>Start with a free discovery call</span>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <span
+              className="v-underline text-sm font-medium"
+              style={{ paddingBottom: '1px' }}
+            >
+              Start with a free discovery call
+            </span>
+            <svg
+              width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"
+              style={{ transition: 'transform 0.2s ease', flexShrink: 0 }}
+              className="group-hover:translate-x-1"
+            >
+              <path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
         </div>

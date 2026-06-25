@@ -44,7 +44,7 @@ export default function Footer() {
                   <li key={s}>
                     <a
                       href="#services"
-                      className="text-sm font-light cursor-pointer transition-opacity duration-200 hover:opacity-80"
+                      className="v-underline inline text-sm font-light cursor-pointer"
                       style={{ color: 'rgba(247,244,239,0.45)', lineHeight: 1.6 }}
                     >
                       {s}
@@ -66,7 +66,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="mailto:hello@veyrasolutions.com"
-                    className="text-sm font-light cursor-pointer transition-opacity duration-200 hover:opacity-80"
+                    className="v-underline inline text-sm font-light cursor-pointer"
                     style={{ color: 'rgba(247,244,239,0.45)' }}
                   >
                     hello@veyrasolutions.com
@@ -75,7 +75,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#contact"
-                    className="text-sm font-light cursor-pointer transition-opacity duration-200 hover:opacity-80"
+                    className="v-underline inline text-sm font-light cursor-pointer"
                     style={{ color: 'rgba(247,244,239,0.45)' }}
                   >
                     Book a discovery call
