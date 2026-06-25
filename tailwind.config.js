@@ -4,40 +4,37 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: {
-          DEFAULT: '#0F1E3A',
-          50: '#E8EBF0',
-          100: '#C5CEDD',
-          200: '#9AAEC8',
-          300: '#6F8DB2',
-          400: '#4D709F',
-          500: '#2B538C',
-          600: '#1E3D6F',
-          700: '#142D55',
-          800: '#0F1E3A',
-          900: '#080F1D',
+        cream: {
+          DEFAULT: '#FAF9F6',
+          warm:    '#F5F0E8',
+          light:   '#FDFCFA',
         },
-        charcoal: {
-          DEFAULT: '#2B2D31',
-          light: '#4A4C52',
-          muted: '#6B6E76',
+        bronze: {
+          DEFAULT: '#C5975A',
+          light:   '#D4AA76',
+          dark:    '#A67840',
+          muted:   '#F0E6D3',
+        },
+        ink: {
+          DEFAULT: '#1C1917',
+          light:   '#44403C',
+          muted:   '#78716C',
+          faint:   '#A8A29E',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
+        serif:   ['"Playfair Display"', 'Georgia', 'serif'],
+        sans:    ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       fontSize: {
         '7xl': ['4.5rem', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
-        '8xl': ['6rem', { lineHeight: '1', letterSpacing: '-0.03em' }],
-        '9xl': ['8rem', { lineHeight: '0.95', letterSpacing: '-0.04em' }],
+        '8xl': ['6rem',   { lineHeight: '1',    letterSpacing: '-0.03em' }],
       },
       spacing: {
         '18': '4.5rem',
         '22': '5.5rem',
         '30': '7.5rem',
-        '36': '9rem',
-        '44': '11rem',
         '128': '32rem',
       },
       maxWidth: {

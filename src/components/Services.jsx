@@ -1,119 +1,107 @@
-const services = [
+import { useInView } from '../hooks/useInView'
+
+const SERVICES = [
   {
     number: '01',
     title: 'Website Modernization',
     description:
-      'A fast, credible website that converts visitors into inquiries. We rebuild or refine your online presence so it reflects the quality of your actual work — not a template from 2015.',
-    outcomes: [
-      'Mobile-first, fast-loading design',
-      'Clear service messaging',
-      'Inquiry-optimized structure',
-      'Built to rank in local search',
-    ],
+      'We rebuild or redesign your website to reflect the real quality of your business — fast, clear, mobile-first, and built to convert visitors into calls.',
+    details: ['Clean, professional design', 'Mobile-optimized layout', 'Clear calls-to-action', 'Fast load performance'],
   },
   {
     number: '02',
     title: 'Google Business Optimization',
     description:
-      "Your Google Business Profile is often the first thing a customer sees. We make sure it's complete, accurate, and positioned to earn the trust and clicks your competitors are capturing.",
-    outcomes: [
-      'Fully optimized profile setup',
-      'Category and keyword strategy',
-      'Review generation process',
-      'Ongoing listing management',
-    ],
+      'Your Google Business Profile is often the first thing customers see. We optimize it so your business stands out and earns trust before they even visit your site.',
+    details: ['Complete profile setup', 'Category & keyword alignment', 'Photo and content strategy', 'Review process guidance'],
   },
   {
     number: '03',
     title: 'Customer Journey Improvements',
     description:
-      "We map the path a customer takes from first discovery to final hire — and identify where you're losing them. Then we systematically remove the friction.",
-    outcomes: [
-      'Discovery-to-inquiry audit',
-      'Contact flow optimization',
-      'Trust signal placement',
-      'Response time improvements',
-    ],
+      'We map how customers move from discovery to contact and identify every point where you lose them — then fix it.',
+    details: ['Contact flow simplification', 'Trust signal placement', 'Clarity of services offered', 'Response pathway setup'],
   },
   {
     number: '04',
     title: 'Business Automation',
     description:
-      'Repetitive manual tasks are costing you time that should go toward your customers. We implement lightweight automation that handles the routine so you can focus on the work.',
-    outcomes: [
-      'Appointment and inquiry workflows',
-      'Follow-up automation',
-      'Review request systems',
-      'Reporting dashboards',
-    ],
+      'Practical systems that save time and reduce dropped leads — without complicated software. We focus on what actually works for local service businesses.',
+    details: ['Lead capture & follow-up', 'Appointment scheduling', 'Review request automation', 'Simple CRM setup'],
   },
 ]
 
 export default function Services() {
-  return (
-    <section id="services" className="bg-white py-36 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+  const [ref, inView] = useInView({ threshold: 0.1 })
 
+  return (
+    <section id="services" className="bg-cream py-24 md:py-36" aria-labelledby="services-heading">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
-        <div className="mb-20">
-          <p className="text-xs font-semibold tracking-widest uppercase text-navy mb-6 opacity-70">
-            Services
-          </p>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <h2 className="lg:col-span-6 font-bold text-charcoal text-balance" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '-0.02em', lineHeight: 1.08 }}>
-              Four disciplines. One goal.
+        <div ref={ref} className={`mb-16 md:mb-20 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="block w-8 h-px bg-bronze" aria-hidden="true" />
+            <span className="font-sans text-xs font-medium tracking-[0.18em] text-bronze uppercase">
+              What We Do
+            </span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <h2 id="services-heading" className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-ink leading-tight max-w-lg">
+              Four areas. One goal.
             </h2>
-            <p className="lg:col-span-5 lg:col-start-8 text-lg text-charcoal-muted font-light leading-relaxed self-end" style={{ letterSpacing: '-0.01em' }}>
-              Each service is designed to solve a specific part of the visibility problem. Most clients start with one and expand as results compound.
+            <p className="font-sans text-base text-ink/50 max-w-sm leading-relaxed">
+              We focus on the digital foundation — not campaigns, not ads, not social media.
             </p>
           </div>
         </div>
 
-        {/* Services */}
-        <div className="space-y-px bg-gray-100">
-          {services.map((svc, i) => (
-            <div key={svc.number} className="bg-white">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-                {/* Left */}
-                <div className="lg:col-span-1 border-r border-gray-100 flex items-start justify-center pt-10 lg:pt-14 pb-0 lg:pb-14 px-0">
-                  <span className="text-xs font-semibold tracking-widest text-navy opacity-30 writing-vertical hidden lg:block" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
-                    {svc.number}
-                  </span>
-                  <span className="text-xs font-semibold tracking-widest text-navy opacity-30 lg:hidden px-6">
-                    {svc.number}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="lg:col-span-11 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 px-6 lg:px-12 py-10 lg:py-14">
-                  <div className="lg:col-span-5">
-                    <h3 className="text-2xl font-bold text-charcoal mb-5" style={{ letterSpacing: '-0.015em' }}>
-                      {svc.title}
-                    </h3>
-                    <p className="text-base text-charcoal-muted font-light leading-relaxed">
-                      {svc.description}
-                    </p>
-                  </div>
-                  <div className="lg:col-span-5 lg:col-start-8">
-                    <p className="text-xs font-semibold tracking-widest uppercase text-charcoal-muted mb-5">
-                      What you get
-                    </p>
-                    <ul className="space-y-3">
-                      {svc.outcomes.map((o) => (
-                        <li key={o} className="flex items-start gap-3">
-                          <span className="mt-1.5 w-1 h-1 rounded-full bg-navy flex-shrink-0" aria-hidden="true" />
-                          <span className="text-sm text-charcoal font-medium">{o}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 gap-px bg-ink/[0.08]">
+          {SERVICES.map((service, i) => (
+            <ServiceCard key={service.number} service={service} index={i} baseInView={inView} />
           ))}
         </div>
-
       </div>
     </section>
+  )
+}
+
+function ServiceCard({ service, index, baseInView }) {
+  const [ref, inView] = useInView({ threshold: 0.1 })
+  const visible = baseInView || inView
+
+  return (
+    <div
+      ref={ref}
+      className={`group bg-cream p-8 md:p-10 lg:p-12 hover:bg-cream-warm transition-colors duration-300 cursor-default ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      } transition-all duration-700`}
+      style={{ transitionDelay: `${index * 100}ms` }}
+    >
+      <div className="flex items-start justify-between mb-6">
+        <span className="font-sans text-xs font-medium tracking-[0.18em] text-bronze">{service.number}</span>
+        <span className="text-ink/20 group-hover:text-bronze transition-colors duration-300" aria-hidden="true">
+          <DiagonalArrow />
+        </span>
+      </div>
+      <h3 className="font-serif text-2xl md:text-3xl font-semibold text-ink mb-4">{service.title}</h3>
+      <p className="font-sans text-sm text-ink/55 leading-relaxed mb-8">{service.description}</p>
+      <ul className="flex flex-col gap-2" role="list">
+        {service.details.map(d => (
+          <li key={d} className="flex items-center gap-2.5 font-sans text-sm text-ink/45">
+            <span className="w-1 h-1 rounded-full bg-bronze flex-shrink-0" aria-hidden="true" />
+            {d}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function DiagonalArrow() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3 13L13 3M13 3H6M13 3v7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   )
 }

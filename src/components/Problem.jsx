@@ -1,60 +1,66 @@
-const problems = [
-  {
-    number: '01',
-    title: "You're invisible where it matters",
-    body: "Potential customers search for services like yours every day — and find your competitors instead. Not because those businesses are better, but because they're better positioned online.",
-  },
-  {
-    number: '02',
-    title: "Your presence doesn't match your quality",
-    body: "An outdated website or sparse Google listing sends the wrong signal. First impressions are formed before anyone picks up the phone, and most local businesses are losing that moment.",
-  },
-  {
-    number: '03',
-    title: 'Growth is stuck at word-of-mouth',
-    body: "Referrals are valuable — but they're not scalable. Without a system that works 24/7, you're leaving a steady stream of qualified, ready-to-hire customers on the table.",
-  },
+import { useInView } from '../hooks/useInView'
+
+const SIGNALS = [
+  'Referrals land on an outdated website',
+  'Google searches find you — but don\'t convert',
+  'No clear way for visitors to trust or contact you',
+  'Your business looks smaller than it is online',
+  'Competitors with worse reputations rank higher',
 ]
 
 export default function Problem() {
+  const [ref, inView] = useInView({ threshold: 0.15 })
+
   return (
-    <section className="bg-white py-36 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-
-        {/* Section header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
-          <div className="lg:col-span-5">
-            <p className="text-xs font-semibold tracking-widest uppercase text-navy mb-6 opacity-70">
-              The Problem
-            </p>
-            <h2 className="font-bold text-charcoal text-balance" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '-0.02em', lineHeight: 1.08 }}>
-              Great businesses are being overlooked every day.
+    <section className="bg-ink text-cream py-24 md:py-36 overflow-hidden" aria-labelledby="problem-heading">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          {/* Left */}
+          <div ref={ref} className={`transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="flex items-center gap-3 mb-8">
+              <span className="block w-8 h-px bg-bronze" aria-hidden="true" />
+              <span className="font-sans text-xs font-medium tracking-[0.18em] text-bronze uppercase">
+                The Problem
+              </span>
+            </div>
+            <h2 id="problem-heading" className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] text-cream">
+              You're already getting interest.{' '}
+              <span className="italic text-cream/60">You're losing it before the first call.</span>
             </h2>
-          </div>
-          <div className="lg:col-span-6 lg:col-start-7 flex items-end">
-            <p className="text-lg text-charcoal-muted font-light leading-relaxed" style={{ letterSpacing: '-0.01em' }}>
-              Most local businesses provide genuinely excellent service. The gap isn't in delivery — it's in digital presence. Customers can't hire someone they can't find, and they won't trust someone who looks unprofessional online.
+            <p className="mt-6 font-sans text-base text-cream/55 leading-relaxed max-w-lg">
+              Most local businesses earn real trust through their work — but when a potential
+              customer checks them out online, something breaks. The website looks old. The
+              Google listing is incomplete. The experience doesn't match the quality of
+              the business.
+            </p>
+            <p className="mt-4 font-sans text-base text-cream/55 leading-relaxed max-w-lg">
+              That gap costs you jobs. Silently, every day.
             </p>
           </div>
-        </div>
 
-        {/* Problem cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-100">
-          {problems.map((p) => (
-            <div key={p.number} className="bg-white p-10 lg:p-14">
-              <p className="text-xs font-semibold tracking-widest text-navy opacity-40 mb-8">
-                {p.number}
-              </p>
-              <h3 className="text-xl font-semibold text-charcoal mb-5 leading-snug" style={{ letterSpacing: '-0.01em' }}>
-                {p.title}
-              </h3>
-              <p className="text-base text-charcoal-muted font-light leading-relaxed">
-                {p.body}
+          {/* Right — signal list */}
+          <div>
+            <ul className="flex flex-col divide-y divide-cream/[0.08]" role="list">
+              {SIGNALS.map((signal, i) => (
+                <li
+                  key={signal}
+                  className={`flex items-start gap-4 py-5 transition-all duration-500 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}
+                  style={{ transitionDelay: inView ? `${i * 80}ms` : '0ms' }}
+                >
+                  <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full border border-bronze/40 flex items-center justify-center" aria-hidden="true">
+                    <span className="w-1.5 h-1.5 rounded-full bg-bronze" />
+                  </span>
+                  <span className="font-sans text-base text-cream/70">{signal}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 p-6 border border-bronze/20 rounded-sm bg-bronze/[0.05]">
+              <p className="font-serif text-lg italic text-cream/80 leading-relaxed">
+                "The quality of your work isn't the problem. The digital presentation is."
               </p>
             </div>
-          ))}
+          </div>
         </div>
-
       </div>
     </section>
   )

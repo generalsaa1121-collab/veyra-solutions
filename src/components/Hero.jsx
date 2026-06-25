@@ -1,67 +1,98 @@
-export default function Hero() {
-  return (
-    <section className="relative min-h-screen flex flex-col justify-center bg-white pt-18" aria-label="Hero">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
-        <div className="max-w-5xl">
+import { useEffect, useRef } from 'react'
 
+export default function Hero() {
+  const headlineRef = useRef(null)
+
+  useEffect(() => {
+    const el = headlineRef.current
+    if (!el) return
+    el.style.opacity = '0'
+    el.style.transform = 'translateY(20px)'
+    const t = setTimeout(() => {
+      el.style.transition = 'opacity 0.9s cubic-bezier(0.25,1,0.5,1), transform 0.9s cubic-bezier(0.25,1,0.5,1)'
+      el.style.opacity = '1'
+      el.style.transform = 'translateY(0)'
+    }, 100)
+    return () => clearTimeout(t)
+  }, [])
+
+  return (
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-cream-light">
+      {/* Subtle warm grid texture */}
+      <div
+        className="absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage: `linear-gradient(#1C1917 1px, transparent 1px), linear-gradient(90deg, #1C1917 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Bronze accent bar */}
+      <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-bronze/30 to-transparent" aria-hidden="true" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-28 pb-24 md:pt-36 md:pb-32">
+        <div className="max-w-4xl">
           {/* Eyebrow */}
-          <p className="text-xs font-semibold tracking-widest uppercase text-navy mb-10 opacity-70">
-            Business Growth Consulting
-          </p>
+          <div className="flex items-center gap-3 mb-10">
+            <span className="block w-8 h-px bg-bronze" aria-hidden="true" />
+            <span className="font-sans text-xs font-medium tracking-[0.18em] text-bronze uppercase">
+              Digital Foundation for Local Businesses
+            </span>
+          </div>
 
           {/* Headline */}
-          <h1 className="font-bold text-charcoal leading-none mb-10 text-balance" style={{ fontSize: 'clamp(2.75rem, 7vw, 6rem)', letterSpacing: '-0.03em', lineHeight: 1.02 }}>
-            Your business should be easier{' '}
-            <span className="text-navy">to find,<br />to trust,</span>{' '}
-            and to hire.
+          <h1
+            ref={headlineRef}
+            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tight text-ink"
+          >
+            Helping local businesses{' '}
+            <span className="italic text-ink/70">become easier</span>{' '}
+            to find, trust, and hire.
           </h1>
 
           {/* Sub */}
-          <p className="text-xl text-charcoal-muted font-light leading-relaxed max-w-2xl mb-14" style={{ letterSpacing: '-0.01em' }}>
-            Veyra Solutions works with local businesses to close the gap between how good they are and how visible that looks online.
+          <p className="mt-8 md:mt-10 font-sans text-lg md:text-xl text-ink/55 leading-relaxed max-w-2xl">
+            Modern websites, stronger online presence, and practical systems
+            designed to help local businesses build trust and convert more customers.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          {/* CTA row */}
+          <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-5">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold tracking-wider text-white bg-navy hover:bg-navy-700 transition-colors duration-200"
-              style={{ letterSpacing: '0.08em' }}
+              className="inline-flex items-center gap-3 px-7 py-4 bg-ink text-cream text-sm font-medium rounded-full hover:bg-ink/80 transition-colors duration-200 cursor-pointer"
             >
-              START A CONVERSATION
+              Schedule a Consultation
+              <ArrowRight />
             </a>
             <a
               href="#services"
-              className="inline-flex items-center gap-2 text-sm font-medium text-charcoal hover:text-navy transition-colors duration-200"
+              className="inline-flex items-center gap-2 text-sm font-medium text-ink/55 hover:text-ink transition-colors duration-200 cursor-pointer"
             >
               See what we do
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <span className="text-bronze" aria-hidden="true">↓</span>
             </a>
           </div>
         </div>
-      </div>
 
-      {/* Bottom rule */}
-      <div className="absolute bottom-16 left-6 right-6 lg:left-12 lg:right-12 max-w-7xl mx-auto">
-        <div className="flex items-center justify-between border-t border-gray-100 pt-8">
-          <p className="text-xs text-charcoal-muted tracking-widest uppercase">
-            Serving local businesses across the US
-          </p>
-          <div className="flex items-center gap-8">
-            <div className="text-center">
-              <p className="text-2xl font-bold text-navy" style={{ letterSpacing: '-0.02em' }}>4</p>
-              <p className="text-xs text-charcoal-muted tracking-widest uppercase mt-0.5">Core Services</p>
-            </div>
-            <div className="w-px h-8 bg-gray-200" />
-            <div className="text-center">
-              <p className="text-2xl font-bold text-navy" style={{ letterSpacing: '-0.02em' }}>100%</p>
-              <p className="text-xs text-charcoal-muted tracking-widest uppercase mt-0.5">Local Focus</p>
-            </div>
-          </div>
+        {/* Bottom rule with label */}
+        <div className="mt-24 md:mt-32 flex items-center gap-6">
+          <span className="block flex-1 h-px bg-ink/10" />
+          <span className="font-sans text-xs text-ink/30 tracking-widest uppercase">
+            Serving home service businesses across the region
+          </span>
+          <span className="block flex-1 h-px bg-ink/10" />
         </div>
       </div>
     </section>
+  )
+}
+
+function ArrowRight() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   )
 }

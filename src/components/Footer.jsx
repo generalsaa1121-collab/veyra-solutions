@@ -1,75 +1,49 @@
-import Logo from './Logo'
-
-const services = [
-  'Website Modernization',
-  'Google Business Optimization',
-  'Customer Journey Improvements',
-  'Business Automation',
-]
-
 export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-white border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <footer className="bg-ink text-cream/40 border-t border-cream/[0.06]" role="contentinfo">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-12">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          {/* Wordmark */}
+          <a href="#" aria-label="Veyra Solutions" className="flex items-center">
+            <span className="font-serif text-lg font-semibold tracking-tight text-cream/80">
+              Veyra<span className="text-bronze">.</span>
+            </span>
+          </a>
 
-        {/* Main footer */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 py-16 lg:py-20">
-          {/* Brand */}
-          <div className="lg:col-span-4">
-            <Logo className="mb-6" />
-            <p className="text-sm text-charcoal-muted font-light leading-relaxed max-w-xs">
-              Helping local businesses become easier to find, trust, and hire.
-            </p>
-          </div>
-
-          {/* Services */}
-          <div className="lg:col-span-3 lg:col-start-7">
-            <p className="text-xs font-semibold tracking-widest uppercase text-charcoal-muted mb-6">
-              Services
-            </p>
-            <ul className="space-y-3">
-              {services.map((s) => (
-                <li key={s}>
-                  <a href="#services" className="text-sm text-charcoal hover:text-navy transition-colors duration-200 font-light">
-                    {s}
+          {/* Links */}
+          <nav aria-label="Footer navigation">
+            <ul className="flex flex-wrap items-center gap-6" role="list">
+              {[
+                ['Services',    '#services'   ],
+                ['Process',     '#process'    ],
+                ['Industries',  '#industries' ],
+                ['FAQ',         '#faq'        ],
+                ['Contact',     '#contact'    ],
+              ].map(([label, href]) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="font-sans text-xs font-medium tracking-wide text-cream/35 hover:text-cream/70 transition-colors duration-200"
+                  >
+                    {label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Contact */}
-          <div className="lg:col-span-3 lg:col-start-10">
-            <p className="text-xs font-semibold tracking-widest uppercase text-charcoal-muted mb-6">
-              Contact
-            </p>
-            <ul className="space-y-3">
-              <li>
-                <a href="mailto:hello@veyrasolutions.com" className="text-sm text-charcoal hover:text-navy transition-colors duration-200 font-light">
-                  hello@veyrasolutions.com
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-sm text-charcoal hover:text-navy transition-colors duration-200 font-light">
-                  Book a discovery call
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="border-t border-gray-100 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p className="text-xs text-charcoal-muted font-light">
-            © {year} Veyra Solutions. All rights reserved.
-          </p>
-          <p className="text-xs text-charcoal-muted font-light tracking-wide">
-            Premium · Consulting-Focused · Modern · Timeless · Minimal
+          {/* Legal */}
+          <p className="font-sans text-xs text-cream/25">
+            &copy; {year} Veyra Solutions
           </p>
         </div>
 
+        <p className="mt-8 font-sans text-xs text-cream/20 max-w-md leading-relaxed">
+          Veyra Solutions helps local businesses build a stronger digital foundation.
+          We are not a marketing agency, ad agency, or social media company.
+        </p>
       </div>
     </footer>
   )
