@@ -1,261 +1,244 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
+// SVG SMIL animation — starts immediately on render, no JS class toggling needed.
+// pathLength="1" normalises path length so dasharray/dashoffset work with values 0–1.
+// animateMotion gives the travelling pulse with zero JS.
 function JourneyDiagram() {
-  const wrapRef = useRef<HTMLDivElement>(null)
-  const [active, setActive] = useState(false)
-
-  useEffect(() => {
-    const el = wrapRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setActive(true) },
-      { threshold: 0.25 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  const inkColor = '#1C1917'
-  const bronzeColor = '#9A7B4F'
-  const stoneColor = '#C8C3BA'
-  const paleColor = 'rgba(154,123,79,0.12)'
+  const ink = '#1C1917'
+  const bronze = '#9A7B4F'
+  const bronzePale = 'rgba(154,123,79,0.13)'
+  const stone = '#C8C3BA'
+  const stoneFaint = 'rgba(200,195,186,0.35)'
 
   return (
-    <div
-      ref={wrapRef}
-      className={`relative w-full ${active ? 'journey-active' : ''}`}
+    <svg
+      viewBox="0 0 280 500"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full"
+      style={{ overflow: 'visible', maxHeight: '480px' }}
       aria-label="Customer journey: Find, Trust, Hire"
       role="img"
     >
-      <svg
-        viewBox="0 0 300 440"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full max-w-xs mx-auto lg:max-w-none"
-        style={{ overflow: 'visible' }}
+      {/*
+        prefers-reduced-motion: wrap all SMIL in a <style> block.
+        SVG <style> is processed by the browser for media queries.
+      */}
+      <style>{`
+        @media (prefers-reduced-motion: reduce) {
+          .veyra-animate { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+        }
+      `}</style>
+
+      {/* ── Background architectural grid ── */}
+      <line x1="140" y1="10" x2="140" y2="490" stroke={stoneFaint} strokeWidth="0.5" strokeDasharray="2 10" />
+      <line x1="20"  y1="80"  x2="260" y2="80"  stroke={stoneFaint} strokeWidth="0.5" />
+      <line x1="20"  y1="250" x2="260" y2="250" stroke={stoneFaint} strokeWidth="0.5" />
+      <line x1="20"  y1="420" x2="260" y2="420" stroke={stoneFaint} strokeWidth="0.5" />
+
+      {/* ── Running index marks ── */}
+      <text x="18" y="83" textAnchor="end" fontSize="7" fill={stone}
+        style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.06em' }}>01</text>
+      <text x="18" y="253" textAnchor="end" fontSize="7" fill={stone}
+        style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.06em' }}>02</text>
+      <text x="18" y="423" textAnchor="end" fontSize="7" fill={stone}
+        style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.06em' }}>03</text>
+
+      {/* ══════════════════════════════
+          PATH 1 — FIND → TRUST
+      ══════════════════════════════ */}
+      <path
+        id="vp1"
+        d="M 140 104 C 175 145 105 205 140 246"
+        stroke={bronze}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        pathLength="1"
+        strokeDasharray="1"
+        strokeDashoffset="1"
+        opacity="0.85"
       >
-        {/* Subtle background grid — editorial technical feel */}
-        <line x1="150" y1="20" x2="150" y2="420" stroke={stoneColor} strokeWidth="0.5" strokeDasharray="2 8" opacity="0.5" />
-        <line x1="20" y1="80" x2="280" y2="80" stroke={stoneColor} strokeWidth="0.5" opacity="0.3" />
-        <line x1="20" y1="220" x2="280" y2="220" stroke={stoneColor} strokeWidth="0.5" opacity="0.3" />
-        <line x1="20" y1="360" x2="280" y2="360" stroke={stoneColor} strokeWidth="0.5" opacity="0.3" />
+        <animate
+          attributeName="stroke-dashoffset"
+          from="1" to="0"
+          dur="1.1s"
+          begin="0.4s"
+          fill="freeze"
+          calcMode="spline"
+          keySplines="0.4 0 0.2 1"
+          keyTimes="0;1"
+        />
+      </path>
 
-        {/* Measurement tick marks */}
-        <line x1="144" y1="76" x2="156" y2="76" stroke={stoneColor} strokeWidth="0.75" opacity="0.5" />
-        <line x1="144" y1="216" x2="156" y2="216" stroke={stoneColor} strokeWidth="0.75" opacity="0.5" />
-        <line x1="144" y1="356" x2="156" y2="356" stroke={stoneColor} strokeWidth="0.75" opacity="0.5" />
+      {/* Annotation mark on path 1 */}
+      <line x1="155" y1="175" x2="172" y2="175" stroke={bronze} strokeWidth="0.75" opacity="0.45" />
+      <text x="175" y="179" fontSize="7.5" fill={bronze} opacity="0.7"
+        style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.09em' }}>RESEARCH</text>
 
-        {/* ─── CONNECTING PATHS ─── */}
-        {/* Path 1: FIND → TRUST (slight curve) */}
+      {/* ══════════════════════════════
+          PATH 2 — TRUST → HIRE
+      ══════════════════════════════ */}
+      <path
+        id="vp2"
+        d="M 140 274 C 105 315 175 375 140 416"
+        stroke={bronze}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        pathLength="1"
+        strokeDasharray="1"
+        strokeDashoffset="1"
+        opacity="0.85"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          from="1" to="0"
+          dur="1.1s"
+          begin="1.3s"
+          fill="freeze"
+          calcMode="spline"
+          keySplines="0.4 0 0.2 1"
+          keyTimes="0;1"
+        />
+      </path>
+
+      {/* Annotation mark on path 2 */}
+      <line x1="125" y1="345" x2="108" y2="345" stroke={bronze} strokeWidth="0.75" opacity="0.45" />
+      <text x="105" y="349" fontSize="7.5" fill={bronze} opacity="0.7" textAnchor="end"
+        style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.09em' }}>DECIDE</text>
+
+      {/* ══════════════════════════════
+          TRAVELLING PULSE — full journey
+          Loops continuously after initial path draw completes
+      ══════════════════════════════ */}
+      {/* Full combined path for animateMotion */}
+      <path
+        id="vp-full"
+        d="M 140 104 C 175 145 105 205 140 246 C 140 260 140 260 140 274 C 105 315 175 375 140 416"
+        stroke="none"
+        fill="none"
+      />
+
+      {/* The travelling dot */}
+      <circle r="4" fill={bronze} opacity="0">
+        {/* Fade in after paths are drawn */}
+        <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="2.5s" fill="freeze" />
+        <animateMotion
+          dur="3.5s"
+          begin="2.5s"
+          repeatCount="indefinite"
+          rotate="auto"
+        >
+          <mpath href="#vp-full" />
+        </animateMotion>
+      </circle>
+
+      {/* Soft glow around the pulse */}
+      <circle r="8" fill={bronze} opacity="0" style={{ filter: 'blur(3px)' }}>
+        <animate attributeName="opacity" from="0" to="0.25" dur="0.3s" begin="2.5s" fill="freeze" />
+        <animateMotion dur="3.5s" begin="2.5s" repeatCount="indefinite" rotate="auto">
+          <mpath href="#vp-full" />
+        </animateMotion>
+      </circle>
+
+      {/* ══════════════════════════════
+          NODE 1 — FIND
+      ══════════════════════════════ */}
+      <g opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.1s" fill="freeze" />
+
+        {/* Outer pulse ring — loops */}
+        <circle cx="140" cy="80" r="32" fill="none" stroke={bronze} strokeWidth="0.75" opacity="0.3">
+          <animate attributeName="r" values="26;38;26" dur="3.5s" begin="1.2s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.35;0;0.35" dur="3.5s" begin="1.2s" repeatCount="indefinite" />
+        </circle>
+
+        {/* Node circle */}
+        <circle cx="140" cy="80" r="26" fill={bronzePale} stroke={bronze} strokeWidth="1" />
+
+        {/* Search / location icon */}
+        <circle cx="138" cy="77" r="8" stroke={ink} strokeWidth="1.2" fill="none" />
+        <line x1="144" y1="83" x2="150" y2="89" stroke={ink} strokeWidth="1.2" strokeLinecap="round" />
+      </g>
+
+      {/* FIND labels */}
+      <g opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.4s" fill="freeze" />
+        <text x="140" y="120" textAnchor="middle" fontSize="11" fontWeight="600" fill={ink}
+          style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '0.1em' }}>
+          FIND
+        </text>
+        <text x="140" y="132" textAnchor="middle" fontSize="7.5" fill="#78716C"
+          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em' }}>
+          Search &amp; Discovery
+        </text>
+      </g>
+
+      {/* ══════════════════════════════
+          NODE 2 — TRUST
+      ══════════════════════════════ */}
+      <g opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.1s" fill="freeze" />
+
+        <circle cx="140" cy="250" r="32" fill="none" stroke={bronze} strokeWidth="0.75" opacity="0.3">
+          <animate attributeName="r" values="26;38;26" dur="3.5s" begin="2s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.35;0;0.35" dur="3.5s" begin="2s" repeatCount="indefinite" />
+        </circle>
+
+        <circle cx="140" cy="250" r="26" fill={bronzePale} stroke={bronze} strokeWidth="1" />
+
+        {/* Trust / review signal — five small circles in star arrangement */}
+        <circle cx="140" cy="245" r="2" fill={ink} />
+        <circle cx="133" cy="250" r="2" fill={ink} />
+        <circle cx="147" cy="250" r="2" fill={ink} />
+        <circle cx="135" cy="256" r="2" fill={ink} />
+        <circle cx="145" cy="256" r="2" fill={ink} />
+      </g>
+
+      <g opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.4s" fill="freeze" />
+        <text x="140" y="290" textAnchor="middle" fontSize="11" fontWeight="600" fill={ink}
+          style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '0.1em' }}>
+          TRUST
+        </text>
+        <text x="140" y="302" textAnchor="middle" fontSize="7.5" fill="#78716C"
+          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em' }}>
+          Reviews &amp; Credibility
+        </text>
+      </g>
+
+      {/* ══════════════════════════════
+          NODE 3 — HIRE (filled)
+      ══════════════════════════════ */}
+      <g opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.1s" fill="freeze" />
+
+        <circle cx="140" cy="420" r="32" fill="none" stroke={bronze} strokeWidth="0.75" opacity="0.3">
+          <animate attributeName="r" values="26;38;26" dur="3.5s" begin="2.8s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.35;0;0.35" dur="3.5s" begin="2.8s" repeatCount="indefinite" />
+        </circle>
+
+        {/* Filled node — hire is the destination */}
+        <circle cx="140" cy="420" r="26" fill={bronze} stroke={bronze} strokeWidth="1" />
+
+        {/* Contact / quote signal — simple phone lines in white */}
         <path
-          className="journey-path journey-path-1"
-          d="M 150 100 C 180 140 120 180 150 215"
-          stroke={bronzeColor}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          opacity="0.8"
+          d="M 133 414 C 132 417 132 422 134 424 L 136 426 C 137 427 138 427 139 426 L 141 424 C 142 423 142 422 141 421 L 140 420 C 139 419 139 418 140 417 L 142 415 C 143 414 143 413 142 412 L 140 411 C 139 410 138 410 137 411 Z"
+          fill="rgba(247,244,239,0.85)"
         />
+      </g>
 
-        {/* Tick mark on path 1 (mid-point annotation) */}
-        <line x1="154" y1="158" x2="166" y2="158" stroke={bronzeColor} strokeWidth="1" opacity="0.4" />
-        <text x="170" y="162" fontSize="8" fill={bronzeColor} opacity="0.6"
-          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.06em' }}>
-          RESEARCH
+      <g opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.4s" fill="freeze" />
+        <text x="140" y="460" textAnchor="middle" fontSize="11" fontWeight="600" fill={ink}
+          style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '0.1em' }}>
+          HIRE
         </text>
-
-        {/* Path 2: TRUST → HIRE (mirror curve) */}
-        <path
-          className="journey-path journey-path-2"
-          d="M 150 245 C 120 280 180 320 150 355"
-          stroke={bronzeColor}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          opacity="0.8"
-        />
-
-        <line x1="154" y1="298" x2="166" y2="298" stroke={bronzeColor} strokeWidth="1" opacity="0.4" />
-        <text x="170" y="302" fontSize="8" fill={bronzeColor} opacity="0.6"
-          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.06em' }}>
-          DECIDE
+        <text x="140" y="472" textAnchor="middle" fontSize="7.5" fill="#78716C"
+          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em' }}>
+          Contact &amp; Quote
         </text>
-
-        {/* ─── NODE 1: FIND ─── */}
-        <circle
-          className="journey-node journey-node-1"
-          cx="150" cy="80"
-          r="22"
-          fill={paleColor}
-          stroke={bronzeColor}
-          strokeWidth="1"
-        />
-        {/* Pulse ring */}
-        <circle
-          className="journey-pulse journey-pulse-1"
-          cx="150" cy="80"
-          r="14"
-          fill="none"
-          stroke={bronzeColor}
-          strokeWidth="0.75"
-          style={{ transformOrigin: '150px 80px' }}
-        />
-        {/* Search signal icon — thin lines forming a magnifying glass */}
-        <circle
-          className="journey-signal"
-          cx="148" cy="77"
-          r="7"
-          stroke={inkColor}
-          strokeWidth="1.25"
-          fill="none"
-        />
-        <line
-          className="journey-signal"
-          x1="153" y1="82" x2="158" y2="87"
-          stroke={inkColor}
-          strokeWidth="1.25"
-          strokeLinecap="round"
-        />
-
-        {/* FIND label */}
-        <g className="journey-label-1">
-          <text
-            x="150" y="115"
-            textAnchor="middle"
-            fontSize="11"
-            fontWeight="600"
-            fill={inkColor}
-            style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '0.08em' }}
-          >
-            FIND
-          </text>
-          <text
-            x="150" y="128"
-            textAnchor="middle"
-            fontSize="7.5"
-            fill="#78716C"
-            style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em' }}
-          >
-            SEARCH &amp; DISCOVERY
-          </text>
-        </g>
-
-        {/* ─── NODE 2: TRUST ─── */}
-        <circle
-          className="journey-node journey-node-2"
-          cx="150" cy="230"
-          r="22"
-          fill={paleColor}
-          stroke={bronzeColor}
-          strokeWidth="1"
-        />
-        <circle
-          className="journey-pulse journey-pulse-2"
-          cx="150" cy="230"
-          r="14"
-          fill="none"
-          stroke={bronzeColor}
-          strokeWidth="0.75"
-          style={{ transformOrigin: '150px 230px' }}
-        />
-        {/* Star / trust signal — five dots arranged in pattern */}
-        <g className="journey-signal-2">
-          <circle cx="150" cy="226" r="1.5" fill={inkColor} />
-          <circle cx="144" cy="230" r="1.5" fill={inkColor} />
-          <circle cx="156" cy="230" r="1.5" fill={inkColor} />
-          <circle cx="146" cy="235" r="1.5" fill={inkColor} />
-          <circle cx="154" cy="235" r="1.5" fill={inkColor} />
-        </g>
-
-        <g className="journey-label-2">
-          <text
-            x="150" y="265"
-            textAnchor="middle"
-            fontSize="11"
-            fontWeight="600"
-            fill={inkColor}
-            style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '0.08em' }}
-          >
-            TRUST
-          </text>
-          <text
-            x="150" y="278"
-            textAnchor="middle"
-            fontSize="7.5"
-            fill="#78716C"
-            style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em' }}
-          >
-            REVIEWS &amp; CREDIBILITY
-          </text>
-        </g>
-
-        {/* ─── NODE 3: HIRE ─── */}
-        <circle
-          className="journey-node journey-node-3"
-          cx="150" cy="370"
-          r="22"
-          fill={bronzeColor}
-          stroke={bronzeColor}
-          strokeWidth="1"
-        />
-        <circle
-          className="journey-pulse journey-pulse-3"
-          cx="150" cy="370"
-          r="14"
-          fill="none"
-          stroke={bronzeColor}
-          strokeWidth="0.75"
-          style={{ transformOrigin: '150px 370px' }}
-        />
-        {/* Contact signal — phone shape */}
-        <g className="journey-signal-3">
-          <path
-            d="M 144 364 C 143 367 143 371 145 373 L 147 375 C 148 376 149 376 150 375 L 152 373 C 153 372 153 371 152 370 L 151 369 C 150 368 150 367 151 366 L 153 364 C 154 363 154 362 153 361 L 151 360 C 150 359 149 359 148 360 Z"
-            fill="rgba(247,244,239,0.8)"
-            strokeWidth="0"
-          />
-        </g>
-
-        <g className="journey-label-3">
-          <text
-            x="150" y="405"
-            textAnchor="middle"
-            fontSize="11"
-            fontWeight="600"
-            fill={inkColor}
-            style={{ fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '0.08em' }}
-          >
-            HIRE
-          </text>
-          <text
-            x="150" y="418"
-            textAnchor="middle"
-            fontSize="7.5"
-            fill="#78716C"
-            style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em' }}
-          >
-            CONTACT &amp; QUOTE
-          </text>
-        </g>
-
-        {/* Side annotations — editorial marks */}
-        <line x1="20" y1="80" x2="120" y2="80" stroke={stoneColor} strokeWidth="0.75" opacity="0.6" />
-        <text x="16" y="83" textAnchor="end" fontSize="7" fill={stoneColor}
-          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.06em' }}>
-          01
-        </text>
-
-        <line x1="20" y1="230" x2="120" y2="230" stroke={stoneColor} strokeWidth="0.75" opacity="0.6" />
-        <text x="16" y="233" textAnchor="end" fontSize="7" fill={stoneColor}
-          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.06em' }}>
-          02
-        </text>
-
-        <line x1="20" y1="370" x2="120" y2="370" stroke={stoneColor} strokeWidth="0.75" opacity="0.6" />
-        <text x="16" y="373" textAnchor="end" fontSize="7" fill={stoneColor}
-          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.06em' }}>
-          03
-        </text>
-      </svg>
-    </div>
+      </g>
+    </svg>
   )
 }
 
@@ -263,7 +246,7 @@ export default function Hero() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 80)
+    const t = setTimeout(() => setMounted(true), 60)
     return () => clearTimeout(t)
   }, [])
 
@@ -275,7 +258,7 @@ export default function Hero() {
       aria-label="Hero"
       className="relative min-h-screen flex flex-col justify-center bg-parchment overflow-hidden"
     >
-      {/* Subtle warm texture — thin horizontal rule system */}
+      {/* Subtle warm horizontal rule grid */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         {[...Array(8)].map((_, i) => (
           <div
@@ -286,7 +269,7 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Right panel — parchment-deep tone */}
+      {/* Right panel — warm parchment-deep tone */}
       <div
         className="absolute right-0 top-0 bottom-0 hidden lg:block"
         style={{ width: '44%', background: '#EDE8DF' }}
@@ -296,10 +279,9 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full pt-28 lg:pt-0 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 lg:min-h-screen lg:items-center gap-12 lg:gap-0">
 
-          {/* Left — editorial text content */}
+          {/* ── Left: text content ── */}
           <div className="lg:col-span-6 lg:pr-12">
 
-            {/* Eyebrow */}
             <div
               className="flex items-center gap-4 mb-10"
               style={{
@@ -311,13 +293,12 @@ export default function Hero() {
               <div className="w-8 h-px bg-bronze" />
               <span
                 className="text-2xs font-semibold uppercase text-bronze"
-                style={{ letterSpacing: '0.2em', fontFamily: 'Inter, sans-serif' }}
+                style={{ letterSpacing: '0.2em' }}
               >
                 Local Business Growth
               </span>
             </div>
 
-            {/* Headline */}
             <h1
               className="font-display text-ink text-balance mb-8"
               style={{
@@ -337,7 +318,6 @@ export default function Hero() {
               Easier to hire.
             </h1>
 
-            {/* Body */}
             <p
               className="text-ink-muted font-light leading-relaxed mb-12 max-w-md"
               style={{
@@ -353,7 +333,6 @@ export default function Hero() {
               so when a customer finds you, they choose you.
             </p>
 
-            {/* CTAs */}
             <div
               className="flex flex-col sm:flex-row items-start gap-4"
               style={{
@@ -379,7 +358,6 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Horizontal rule + sub-note */}
             <div
               className="mt-16 pt-8 border-t border-stone/50"
               style={{
@@ -393,17 +371,17 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right — journey diagram */}
+          {/* ── Right: live journey diagram ── */}
           <div
             className="lg:col-span-6 flex items-center justify-center py-8 lg:py-0"
             style={{
               opacity: mounted ? 1 : 0,
-              transition: `opacity 0.9s ease 0.3s`,
+              transition: `opacity 0.5s ease 0.2s`,
             }}
           >
-            <div className="w-full max-w-xs lg:max-w-sm xl:max-w-md">
-              <div className="mb-6 flex items-center gap-3 justify-center lg:justify-start lg:pl-8">
-                <div className="w-5 h-px bg-bronze/60" />
+            <div className="w-full max-w-[220px] lg:max-w-[260px] xl:max-w-[280px]">
+              <div className="mb-5 flex items-center gap-3">
+                <div className="w-5 h-px" style={{ background: 'rgba(154,123,79,0.5)' }} />
                 <span
                   className="text-3xs uppercase text-graphite"
                   style={{ letterSpacing: '0.22em', fontFamily: 'Inter, sans-serif' }}
