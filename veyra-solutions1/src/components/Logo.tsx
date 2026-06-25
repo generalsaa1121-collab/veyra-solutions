@@ -1,71 +1,75 @@
-interface LogoProps {
-  className?: string
-  size?: 'sm' | 'md' | 'lg'
-  variant?: 'full' | 'mark'
+interface LogoMarkProps {
+  size?: number
+  color?: string
 }
 
-export function LogoMark({ size = 40 }: { size?: number }) {
+// Faithful recreation of the Veyra Solutions V mark:
+// Two angular arms form an elegant V. Each arm is a filled angular shape
+// (not a simple line stroke) creating the brand's clean geometric mark.
+// The interior negative space between the arms forms the V shape.
+export function LogoMark({ size = 40, color = '#0F1E3A' }: LogoMarkProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      {/* Geometric faceted V — inspired by brand crystal mark */}
-      {/* Bottom tip */}
-      <path d="M20 38 L6 14 L14 14 Z" fill="url(#gradLeft)" />
-      <path d="M20 38 L26 14 L34 14 Z" fill="url(#gradRight)" />
-      {/* Top bar left */}
-      <path d="M4 6 L14 6 L14 14 L6 14 Z" fill="url(#gradTopL)" />
-      {/* Top bar right */}
-      <path d="M26 6 L36 6 L34 14 L26 14 Z" fill="url(#gradTopR)" />
-      {/* Center bridge */}
-      <path d="M14 6 L26 6 L26 14 L14 14 Z" fill="url(#gradCenter)" opacity="0.5" />
-      {/* Inner light edge */}
-      <path d="M14 14 L20 38 L26 14 Z" fill="rgba(255,255,255,0.05)" />
-      {/* Top highlight line */}
-      <line x1="4" y1="6" x2="36" y2="6" stroke="rgba(99,139,235,0.5)" strokeWidth="0.5" />
-      {/* Side edges */}
-      <line x1="4" y1="6" x2="20" y2="38" stroke="rgba(59,95,192,0.3)" strokeWidth="0.5" />
-      <line x1="36" y1="6" x2="20" y2="38" stroke="rgba(59,95,192,0.3)" strokeWidth="0.5" />
-      <defs>
-        <linearGradient id="gradLeft" x1="6" y1="14" x2="20" y2="38" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#2A4DB5" />
-          <stop offset="100%" stopColor="#12256B" />
-        </linearGradient>
-        <linearGradient id="gradRight" x1="34" y1="14" x2="20" y2="38" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#4F72D9" />
-          <stop offset="100%" stopColor="#2A4DB5" />
-        </linearGradient>
-        <linearGradient id="gradTopL" x1="4" y1="6" x2="14" y2="14" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#6B8EE8" />
-          <stop offset="100%" stopColor="#3B5FC0" />
-        </linearGradient>
-        <linearGradient id="gradTopR" x1="36" y1="6" x2="26" y2="14" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#5079D4" />
-          <stop offset="100%" stopColor="#2A4DB5" />
-        </linearGradient>
-        <linearGradient id="gradCenter" x1="14" y1="6" x2="26" y2="14" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#4F72D9" />
-          <stop offset="100%" stopColor="#3B5FC0" />
-        </linearGradient>
-      </defs>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 44 48"
+      fill="none"
+      aria-hidden="true"
+    >
+      {/* Left arm — angular parallelogram shape forming left side of V */}
+      <path
+        d="M0 0 L10 0 L22 38 L16 48 Z"
+        fill={color}
+      />
+      {/* Right arm — mirror of left arm */}
+      <path
+        d="M44 0 L34 0 L22 38 L28 48 Z"
+        fill={color}
+      />
+      {/* Top bridge — connects the two arms across the top, creating the open V */}
+      <path
+        d="M10 0 L34 0 L32 6 L12 6 Z"
+        fill={color}
+      />
     </svg>
   )
 }
 
-export default function Logo({ className = '', variant = 'full' }: LogoProps) {
-  if (variant === 'mark') return <LogoMark />
+interface LogoProps {
+  className?: string
+  variant?: 'full' | 'mark'
+  color?: string
+  size?: 'sm' | 'md' | 'lg'
+}
+
+export default function Logo({ className = '', variant = 'full', color = '#0F1E3A' }: LogoProps) {
+  if (variant === 'mark') {
+    return <LogoMark color={color} />
+  }
 
   return (
-    <div className={`flex items-center gap-2.5 ${className}`}>
-      <LogoMark size={32} />
-      <div className="flex flex-col justify-center leading-none gap-0.5">
+    <div className={`flex items-center gap-3 ${className}`}>
+      <LogoMark size={30} color={color} />
+      <div className="flex flex-col justify-center leading-none gap-[3px]">
         <span
-          className="font-display font-bold text-ink"
-          style={{ fontSize: '1.05rem', letterSpacing: '-0.025em', lineHeight: 1 }}
+          className="font-display font-bold tracking-wide uppercase"
+          style={{
+            fontSize: '1rem',
+            letterSpacing: '0.08em',
+            lineHeight: 1,
+            color,
+          }}
         >
-          Veyra<span className="text-blue-glow">A</span>
+          Veyra
         </span>
         <span
-          className="font-display font-semibold text-ink-dim tracking-[0.2em] uppercase"
-          style={{ fontSize: '0.5rem' }}
+          className="font-display font-semibold tracking-widest uppercase"
+          style={{
+            fontSize: '0.62rem',
+            letterSpacing: '0.18em',
+            lineHeight: 1,
+            color,
+          }}
         >
           Solutions
         </span>

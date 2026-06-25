@@ -32,31 +32,38 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="border-b border-rim/30">
+    <div className="border-b border-border">
       <button
-        className="w-full flex items-start justify-between gap-6 py-7 text-left cursor-pointer group"
+        className="w-full flex items-start justify-between gap-8 py-7 text-left cursor-pointer group"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
       >
         <span
-          className="font-display font-medium text-ink group-hover:text-gold transition-colors duration-200"
-          style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.01em' }}
+          className="font-display font-medium text-navy group-hover:text-navy-mid transition-colors duration-200"
+          style={{ fontSize: 'clamp(0.92rem, 1.4vw, 1.05rem)', letterSpacing: '-0.01em', lineHeight: 1.4 }}
         >
           {q}
         </span>
         <span
-          className="flex-shrink-0 w-5 h-5 flex items-center justify-center text-ink-dim group-hover:text-gold transition-all duration-200 mt-0.5"
+          className="flex-shrink-0 w-5 h-5 flex items-center justify-center text-charcoal-muted mt-0.5"
           aria-hidden="true"
-          style={{ transform: open ? 'rotate(45deg)' : 'rotate(0deg)', transitionProperty: 'transform, color' }}
+          style={{
+            transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
+            transition: 'transform 0.25s ease',
+          }}
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         </span>
       </button>
       <div
-        className="overflow-hidden transition-all duration-300"
-        style={{ maxHeight: open ? '500px' : '0px', opacity: open ? 1 : 0 }}
+        style={{
+          maxHeight: open ? '400px' : '0px',
+          opacity: open ? 1 : 0,
+          overflow: 'hidden',
+          transition: 'max-height 0.3s ease, opacity 0.25s ease',
+        }}
       >
         <p className="pb-7 text-ink-muted font-light leading-relaxed" style={{ fontSize: '0.9375rem' }}>
           {a}
@@ -73,25 +80,24 @@ export default function FAQ() {
     <section
       id="faq"
       ref={ref as React.RefObject<HTMLElement>}
-      className="bg-depth border-t border-rim/30 py-28 lg:py-40"
+      className="bg-surface border-t border-border py-28 lg:py-40"
       aria-labelledby="faq-heading"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
 
           {/* Left */}
           <div className={`lg:col-span-4 reveal ${visible ? 'visible' : ''}`}>
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-8 h-px bg-blue-brand" />
-              <span className="text-2xs font-semibold tracking-[0.2em] uppercase text-ink-dim font-display">
+              <div className="w-8 h-px bg-navy" />
+              <span className="text-2xs font-semibold tracking-[0.18em] uppercase text-charcoal-muted font-display">
                 FAQ
               </span>
             </div>
             <h2
               id="faq-heading"
-              className="font-display font-bold text-ink text-balance mb-6"
-              style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', letterSpacing: '-0.025em', lineHeight: 1.1 }}
+              className="font-display font-bold text-navy text-balance mb-6"
+              style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', letterSpacing: '-0.025em', lineHeight: 1.1 }}
             >
               Common questions.
             </h2>
@@ -101,8 +107,11 @@ export default function FAQ() {
           </div>
 
           {/* Right */}
-          <div className={`lg:col-span-8 reveal ${visible ? 'visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
-            <div className="border-t border-rim/30">
+          <div
+            className={`lg:col-span-8 reveal ${visible ? 'visible' : ''}`}
+            style={{ transitionDelay: '0.1s' }}
+          >
+            <div className="border-t border-border">
               {faqs.map((faq) => (
                 <FAQItem key={faq.q} q={faq.q} a={faq.a} />
               ))}

@@ -25,31 +25,31 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-void/90 backdrop-blur-md border-b border-rim/40'
+          ? 'bg-white/95 backdrop-blur-sm border-b border-border shadow-sm'
           : 'bg-transparent'
       }`}
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-gold focus:text-void focus:text-sm focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-navy focus:text-white focus:text-sm focus:font-semibold"
       >
         Skip to content
       </a>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-18" style={{ height: '4.5rem' }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between" style={{ height: '4.5rem' }}>
         <a href="#" aria-label="Veyra Solutions home">
           <Logo />
         </a>
 
-        {/* Desktop */}
+        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8" aria-label="Primary">
           {links.map((l) => (
             <a
               key={l.label}
               href={l.href}
-              className="text-sm font-medium text-ink-muted hover:text-ink transition-colors duration-200 cursor-pointer"
+              className="text-sm font-medium text-charcoal-muted hover:text-navy transition-colors duration-200 cursor-pointer tracking-wide"
             >
               {l.label}
             </a>
@@ -58,14 +58,14 @@ export default function Nav() {
 
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center justify-center px-5 py-2.5 text-2xs font-semibold tracking-[0.12em] uppercase bg-gold text-void hover:bg-gold-light transition-colors duration-200 cursor-pointer"
+          className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-2xs font-semibold tracking-[0.1em] uppercase text-white bg-navy hover:bg-navy-mid transition-colors duration-200 cursor-pointer"
         >
           Schedule a Call
         </a>
 
-        {/* Hamburger */}
+        {/* Mobile toggle */}
         <button
-          className="md:hidden p-2 cursor-pointer text-ink-muted hover:text-ink"
+          className="md:hidden p-2 cursor-pointer text-charcoal hover:text-navy transition-colors"
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
@@ -88,8 +88,8 @@ export default function Nav() {
 
       {/* Mobile drawer */}
       <div
-        className={`md:hidden bg-depth border-t border-rim/40 overflow-hidden transition-all duration-300 ${
-          open ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        className={`md:hidden bg-white border-t border-border overflow-hidden transition-all duration-300 ${
+          open ? 'max-h-screen' : 'max-h-0'
         }`}
         aria-hidden={!open}
       >
@@ -98,7 +98,7 @@ export default function Nav() {
             <a
               key={l.label}
               href={l.href}
-              className="text-base font-medium text-ink hover:text-gold transition-colors duration-200 cursor-pointer"
+              className="text-base font-medium text-charcoal hover:text-navy transition-colors duration-200 cursor-pointer"
               onClick={() => setOpen(false)}
             >
               {l.label}
@@ -106,7 +106,7 @@ export default function Nav() {
           ))}
           <a
             href="#contact"
-            className="mt-3 inline-flex items-center justify-center px-6 py-3.5 text-2xs font-semibold tracking-[0.12em] uppercase bg-gold text-void cursor-pointer"
+            className="mt-3 inline-flex items-center justify-center px-6 py-3.5 text-2xs font-semibold tracking-[0.1em] uppercase text-white bg-navy cursor-pointer"
             onClick={() => setOpen(false)}
           >
             Schedule a Call

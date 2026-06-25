@@ -34,7 +34,7 @@ export default function Process() {
     <section
       id="process"
       ref={ref as React.RefObject<HTMLElement>}
-      className="bg-depth border-t border-rim/30 py-28 lg:py-40 overflow-hidden"
+      className="bg-navy py-28 lg:py-40"
       aria-labelledby="process-heading"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -42,48 +42,52 @@ export default function Process() {
         {/* Header */}
         <div className={`mb-20 reveal ${visible ? 'visible' : ''}`}>
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-8 h-px bg-blue-brand" />
-            <span className="text-2xs font-semibold tracking-[0.2em] uppercase text-ink-dim font-display">
+            <div className="w-8 h-px bg-white/30" />
+            <span className="text-2xs font-semibold tracking-[0.18em] uppercase text-white/50 font-display">
               How It Works
             </span>
           </div>
           <h2
             id="process-heading"
-            className="font-display font-bold text-ink max-w-2xl text-balance"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', letterSpacing: '-0.025em', lineHeight: 1.1 }}
+            className="font-display font-bold text-white max-w-2xl text-balance"
+            style={{ fontSize: 'clamp(2rem, 3.8vw, 3.25rem)', letterSpacing: '-0.025em', lineHeight: 1.1 }}
           >
             Straightforward from day one.
           </h2>
         </div>
 
-        {/* Steps grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-rim/30">
+        {/* Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: 'rgba(255,255,255,0.08)' }}>
           {steps.map((step, i) => (
             <div
               key={step.n}
-              className={`bg-depth p-8 lg:p-10 flex flex-col gap-6 reveal ${visible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${0.1 + i * 0.1}s` }}
+              className={`bg-navy p-8 lg:p-10 flex flex-col gap-8 reveal ${visible ? 'visible' : ''}`}
+              style={{ transitionDelay: `${0.08 + i * 0.1}s` }}
             >
-              {/* Step number — large ghost */}
+              {/* Large ghost number */}
               <div className="flex items-start justify-between">
                 <span
-                  className="font-display font-black text-rim select-none leading-none"
-                  style={{ fontSize: '3.5rem', letterSpacing: '-0.04em' }}
+                  className="font-display font-black select-none leading-none"
+                  style={{
+                    fontSize: '3.5rem',
+                    letterSpacing: '-0.04em',
+                    color: 'rgba(255,255,255,0.1)',
+                  }}
                   aria-hidden="true"
                 >
                   {step.n}
                 </span>
-                <div className="w-1.5 h-1.5 rounded-full bg-gold mt-3 flex-shrink-0" aria-hidden="true" />
+                <div className="w-1 h-1 bg-white/40 flex-shrink-0 mt-3" aria-hidden="true" />
               </div>
 
               <div>
                 <h3
-                  className="font-display font-semibold text-ink mb-3"
-                  style={{ fontSize: '1.2rem', letterSpacing: '-0.015em' }}
+                  className="font-display font-semibold text-white mb-3"
+                  style={{ fontSize: '1.15rem', letterSpacing: '-0.015em' }}
                 >
                   {step.title}
                 </h3>
-                <p className="text-ink-muted font-light leading-relaxed" style={{ fontSize: '0.9rem' }}>
+                <p className="font-light leading-relaxed" style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.55)' }}>
                   {step.description}
                 </p>
               </div>
@@ -91,13 +95,19 @@ export default function Process() {
           ))}
         </div>
 
-        {/* Connector note */}
-        <div className={`mt-12 flex items-center gap-6 reveal ${visible ? 'visible' : ''}`} style={{ transitionDelay: '0.5s' }}>
-          <div className="flex-1 h-px bg-rim/40" />
-          <p className="text-sm text-ink-dim font-light italic text-center max-w-md">
+        {/* Footnote */}
+        <div
+          className={`mt-12 flex items-center gap-6 reveal ${visible ? 'visible' : ''}`}
+          style={{ transitionDelay: '0.5s' }}
+        >
+          <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
+          <p
+            className="text-sm font-light italic text-center max-w-md"
+            style={{ color: 'rgba(255,255,255,0.4)' }}
+          >
             Most clients go from first conversation to live results in under 8 weeks.
           </p>
-          <div className="flex-1 h-px bg-rim/40" />
+          <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
         </div>
 
       </div>

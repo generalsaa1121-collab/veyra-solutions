@@ -70,7 +70,7 @@ export default function Services() {
     <section
       id="services"
       ref={ref as React.RefObject<HTMLElement>}
-      className="bg-void border-t border-rim/30 py-28 lg:py-40"
+      className="bg-surface border-t border-border py-28 lg:py-40"
       aria-labelledby="services-heading"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -78,41 +78,40 @@ export default function Services() {
         {/* Header */}
         <div className={`mb-20 reveal ${visible ? 'visible' : ''}`}>
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-8 h-px bg-gold" />
-            <span className="text-2xs font-semibold tracking-[0.2em] uppercase text-gold font-display">
+            <div className="w-8 h-px bg-navy" />
+            <span className="text-2xs font-semibold tracking-[0.18em] uppercase text-charcoal-muted font-display">
               Services
             </span>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
             <h2
               id="services-heading"
-              className="font-display font-bold text-ink text-balance"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', letterSpacing: '-0.025em', lineHeight: 1.1 }}
+              className="font-display font-bold text-navy text-balance"
+              style={{ fontSize: 'clamp(2rem, 3.8vw, 3.25rem)', letterSpacing: '-0.025em', lineHeight: 1.1 }}
             >
               Five disciplines. One goal.
             </h2>
-            <p className="text-ink-muted font-light leading-relaxed self-end text-lg" style={{ letterSpacing: '-0.01em' }}>
+            <p className="text-ink-muted font-light leading-relaxed self-end text-lg" style={{ letterSpacing: '-0.005em' }}>
               Each service is designed to close a specific part of the visibility gap.
               Most clients start with one and expand as results compound.
             </p>
           </div>
         </div>
 
-        {/* Service list */}
-        <div className="border-t border-rim/30">
+        {/* Service rows */}
+        <div className="border-t border-border">
           {services.map((svc, i) => (
             <div
               key={svc.n}
-              className={`border-b border-rim/30 group reveal ${visible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${0.05 + i * 0.08}s` }}
+              className={`border-b border-border group reveal ${visible ? 'visible' : ''}`}
+              style={{ transitionDelay: `${0.04 + i * 0.07}s` }}
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
 
-                {/* Number column */}
-                <div className="lg:col-span-1 border-r border-rim/20 flex lg:items-start lg:justify-center pt-8 lg:pt-12 px-0 pb-0 lg:pb-12">
+                {/* Number */}
+                <div className="lg:col-span-1 flex items-start pt-8 lg:pt-12 px-0 lg:border-r border-border">
                   <span
-                    className="font-display font-bold text-rim group-hover:text-gold-muted transition-colors duration-300 select-none px-6 lg:px-0"
-                    style={{ fontSize: '0.7rem', letterSpacing: '0.1em', writingMode: 'horizontal-tb' }}
+                    className="text-2xs font-semibold tracking-[0.12em] text-border-strong font-display select-none"
                     aria-hidden="true"
                   >
                     {svc.n}
@@ -120,11 +119,11 @@ export default function Services() {
                 </div>
 
                 {/* Content */}
-                <div className="lg:col-span-11 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 px-6 lg:px-12 py-8 lg:py-12">
+                <div className="lg:col-span-11 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 px-0 lg:px-10 py-8 lg:py-12">
                   <div className="lg:col-span-5">
                     <h3
-                      className="font-display font-semibold text-ink mb-4 group-hover:text-gold transition-colors duration-300"
-                      style={{ fontSize: 'clamp(1.1rem, 2vw, 1.5rem)', letterSpacing: '-0.018em' }}
+                      className="font-display font-semibold text-navy mb-4 group-hover:text-navy-mid transition-colors duration-200"
+                      style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.4rem)', letterSpacing: '-0.015em' }}
                     >
                       {svc.title}
                     </h3>
@@ -134,13 +133,13 @@ export default function Services() {
                   </div>
 
                   <div className="lg:col-span-5 lg:col-start-8">
-                    <p className="text-2xs font-semibold tracking-[0.16em] uppercase text-ink-dim mb-5 font-display">
+                    <p className="text-2xs font-semibold tracking-[0.14em] uppercase text-charcoal-muted mb-5 font-display">
                       What you get
                     </p>
                     <ul className="space-y-3">
                       {svc.outcomes.map((o) => (
                         <li key={o} className="flex items-start gap-3">
-                          <span className="mt-[0.4rem] w-1 h-1 rounded-full bg-gold flex-shrink-0" aria-hidden="true" />
+                          <span className="mt-[0.45rem] w-1 h-1 bg-navy flex-shrink-0" aria-hidden="true" />
                           <span className="text-sm text-ink-muted font-light">{o}</span>
                         </li>
                       ))}
