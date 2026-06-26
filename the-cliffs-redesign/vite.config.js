@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/veyra-solutions/',
+  base: '/veyra-solutions/the-cliffs/',
 })
