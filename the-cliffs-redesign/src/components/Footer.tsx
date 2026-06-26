@@ -62,7 +62,7 @@ export default function Footer() {
               aria-label="The Cliffs - Back to top"
             >
               <img
-                src="/logo.png"
+                src={`${import.meta.env.BASE_URL}logo.png`}
                 alt="The Cliffs logo"
                 className="h-10 w-auto object-contain"
                 onError={(e) => {

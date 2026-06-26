@@ -58,7 +58,7 @@ export default function Hero() {
             aria-hidden="true"
           />
           <img
-            src="/logo.png"
+            src={`${import.meta.env.BASE_URL}logo.png`}
             alt="The Cliffs — New Jersey's Most Versatile 8-Piece Cover Band"
             className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto object-contain drop-shadow-2xl"
             style={{ maxWidth: '400px' }}
