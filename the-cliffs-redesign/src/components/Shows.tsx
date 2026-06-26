@@ -41,7 +41,7 @@ export default function Shows() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.04, duration: 0.5 }}
+              transition={{ delay: Math.min(i * 0.04, 0.4), duration: 0.5 }}
               whileHover={{ backgroundColor: '#161616' } as Record<string, string>}
             >
               {/* Date + Time */}

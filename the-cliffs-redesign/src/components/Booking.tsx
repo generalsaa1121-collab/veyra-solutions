@@ -309,7 +309,7 @@ export default function Booking() {
                 <motion.button
                   type="submit"
                   disabled={loading}
-                  className="mt-6 w-full py-4 bg-cliffs-pink text-white font-semibold text-base rounded-xl cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 font-body"
+                  className="mt-6 w-full py-4 bg-cliffs-pink text-white font-semibold text-base rounded-full cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 font-body"
                   whileHover={!loading ? { scale: 1.02, boxShadow: '0 0 30px rgba(255,45,120,0.4)' } : {}}
                   whileTap={!loading ? { scale: 0.98 } : {}}
                 >

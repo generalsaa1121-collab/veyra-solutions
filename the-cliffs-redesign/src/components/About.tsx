@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ABOUT_STORY, BAND_MEMBERS, STATS } from '../data/content';
 
@@ -8,21 +7,8 @@ const fadeUp = {
 };
 
 function StatCard({ value, label, index }: { value: string; label: string; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <motion.div
-      ref={ref}
       className="text-center p-6 md:p-8 rounded-2xl border border-white/8"
       style={{ backgroundColor: '#1A1A1A' }}
       initial={{ opacity: 0, y: 24 }}
@@ -32,13 +18,7 @@ function StatCard({ value, label, index }: { value: string; label: string; index
     >
       <div
         className="font-display text-cliffs-pink mb-2 leading-none"
-        style={{
-          fontSize: 'clamp(1.6rem, 4vw, 2.8rem)',
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(10px)',
-          transition: 'opacity 0.5s ease, transform 0.5s ease',
-          transitionDelay: `${index * 0.1}s`,
-        }}
+        style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}
       >
         {value}
       </div>

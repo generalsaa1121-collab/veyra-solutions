@@ -43,20 +43,21 @@ export interface Medley {
 
 export interface GenreMeta {
   label: string;
+  short: string;
   color: string;
 }
 
 export const GENRE_META: Record<GenreKey, GenreMeta> = {
-  'motown':      { label: 'Motown & Oldies',    color: '#E8A84C' },
-  'big-band':    { label: 'Big Band & Swing',    color: '#52C08A' },
-  'soul':        { label: 'Soul & R&B',           color: '#B87FE0' },
-  '70s-rock':    { label: '70s Rock',             color: '#E87040' },
-  '70s-disco':   { label: '70s Disco',            color: '#F03090' },
-  '80s':         { label: '80s',                  color: '#4A8CD8' },
-  '90s':         { label: '90s',                  color: '#70C840' },
-  'hip-hop':     { label: 'Hip Hop',              color: '#FF6030' },
-  '2000s':       { label: '2000s+',               color: '#FF2D78' },
-  'traditional': { label: 'Traditional',          color: '#8895A8' },
+  'motown':      { label: 'Motown & Oldies',    short: 'Motown',    color: '#E8A84C' },
+  'big-band':    { label: 'Big Band & Swing',    short: 'Big Band',  color: '#52C08A' },
+  'soul':        { label: 'Soul & R&B',           short: 'Soul',      color: '#B87FE0' },
+  '70s-rock':    { label: '70s Rock',             short: '70s Rock',  color: '#E87040' },
+  '70s-disco':   { label: '70s Disco',            short: '70s Disco', color: '#F03090' },
+  '80s':         { label: '80s',                  short: '80s',       color: '#4A8CD8' },
+  '90s':         { label: '90s',                  short: '90s',       color: '#70C840' },
+  'hip-hop':     { label: 'Hip Hop',              short: 'Hip Hop',   color: '#FF6030' },
+  '2000s':       { label: '2000s+',               short: '2000s+',    color: '#FF2D78' },
+  'traditional': { label: 'Traditional',          short: 'Trad.',     color: '#8895A8' },
 };
 
 export interface TagMeta {

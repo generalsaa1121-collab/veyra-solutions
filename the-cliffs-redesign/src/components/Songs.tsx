@@ -131,7 +131,7 @@ function SongRow({ song }: { song: typeof SONGS[number] }) {
           className="ml-1 text-[9px] font-semibold font-body px-1.5 py-0.5 rounded tracking-wide flex-shrink-0"
           style={{ backgroundColor: `${meta.color}20`, color: meta.color }}
         >
-          {meta.label.split(' ')[0]}
+          {meta.short}
         </span>
       </div>
     </div>
@@ -186,7 +186,7 @@ export default function Songs() {
   const hasResults = filteredSongs.length > 0 || showMedleys;
 
   return (
-    <section id="songs" className="py-24 md:py-32 px-4 sm:px-6" style={{ backgroundColor: '#0d0d0d' }}>
+    <section id="songs" className="py-24 md:py-32 px-4 sm:px-6" style={{ backgroundColor: '#050505' }}>
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -293,8 +293,8 @@ export default function Songs() {
                   className="px-3.5 py-1.5 rounded-full text-xs font-semibold font-body cursor-pointer transition-all duration-200 flex-shrink-0 border"
                   style={
                     isActive
-                      ? { backgroundColor: meta.color, borderColor: meta.color, color: '#000' }
-                      : { borderColor: 'rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.50)' }
+                      ? { backgroundColor: meta.color, borderColor: meta.color, color: '#000', transition: 'border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease' }
+                      : { borderColor: 'rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.50)', transition: 'border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease' }
                   }
                   onMouseEnter={(e) => {
                     if (!isActive) e.currentTarget.style.borderColor = meta.color;
@@ -322,8 +322,8 @@ export default function Songs() {
                   className="px-3.5 py-1.5 rounded-full text-xs font-semibold font-body cursor-pointer transition-all duration-200 flex-shrink-0 border"
                   style={
                     isActive
-                      ? { backgroundColor: meta.color, borderColor: meta.color, color: '#000' }
-                      : { borderColor: 'rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.50)' }
+                      ? { backgroundColor: meta.color, borderColor: meta.color, color: '#000', transition: 'border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease' }
+                      : { borderColor: 'rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.50)', transition: 'border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease' }
                   }
                   onMouseEnter={(e) => {
                     if (!isActive) e.currentTarget.style.borderColor = meta.color;

@@ -134,7 +134,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/25 text-xs font-body text-center sm:text-left">
-            &copy; 2019 {BAND.copyright}. All rights reserved.
+            &copy; {new Date().getFullYear()} {BAND.copyright}. All rights reserved.
           </p>
           <p className="text-white/25 text-xs font-body text-center">
             {BAND.tagline}
