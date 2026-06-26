@@ -46,7 +46,7 @@ export default function Nav() {
             >
               {/* NOTE: Place logo.png in /public/logo.png — user supplies actual file */}
               <img
-                src="/logo.png"
+                src={`${import.meta.env.BASE_URL}logo.png`}
                 alt="The Cliffs logo"
                 className="h-10 md:h-12 w-auto object-contain"
                 onError={(e) => {
