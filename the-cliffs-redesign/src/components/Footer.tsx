@@ -1,13 +1,12 @@
 import { motion } from 'framer-motion';
-import { BAND } from '../data/content';
+import { BAND, BOOKING_AGENT } from '../data/content';
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
   { label: 'Videos', href: '#videos' },
-  { label: 'Songs', href: '#songs' },
   { label: 'Shows', href: '#shows' },
   { label: 'Reviews', href: '#reviews' },
-  { label: 'Gallery', href: '#gallery' },
   { label: 'Contact', href: '#booking' },
 ];
 
@@ -39,15 +38,6 @@ const SOCIAL_LINKS = [
       </svg>
     ),
   },
-  {
-    label: 'TikTok',
-    href: 'https://tiktok.com',
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.26 8.26 0 004.84 1.55V6.8a4.85 4.85 0 01-1.07-.11z" />
-      </svg>
-    ),
-  },
 ];
 
 export default function Footer() {
@@ -71,7 +61,6 @@ export default function Footer() {
               className="inline-block cursor-pointer mb-4"
               aria-label="The Cliffs - Back to top"
             >
-              {/* NOTE: Place logo.png in /public/logo.png */}
               <img
                 src="/logo.png"
                 alt="The Cliffs logo"
@@ -83,8 +72,9 @@ export default function Footer() {
               />
             </a>
             <p className="text-white/40 text-sm font-body leading-relaxed max-w-xs">
-              Elite Live Entertainment for New York's most prestigious events. We don't just play — we electrify.
+              {BAND.tagline}
             </p>
+            <p className="text-white/25 text-xs font-body mt-2">{BAND.location}</p>
           </div>
 
           {/* Nav links */}
@@ -125,16 +115,16 @@ export default function Footer() {
             </div>
             <div className="flex flex-col gap-2">
               <a
-                href={`mailto:${BAND.email}`}
+                href={`mailto:${BOOKING_AGENT.email}`}
                 className="text-white/50 hover:text-white text-sm font-body transition-colors cursor-pointer"
               >
-                {BAND.email}
+                {BOOKING_AGENT.email}
               </a>
               <a
-                href={`tel:${BAND.phone}`}
+                href={`tel:${BOOKING_AGENT.phone}`}
                 className="text-white/50 hover:text-white text-sm font-body transition-colors cursor-pointer"
               >
-                {BAND.phone}
+                {BOOKING_AGENT.phone}
               </a>
             </div>
           </div>
@@ -143,10 +133,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/25 text-xs font-body text-center sm:text-left">
-            &copy; 2026 The Cliffs. All rights reserved.
+            &copy; 2019 {BAND.copyright}. All rights reserved.
           </p>
           <p className="text-white/25 text-xs font-body text-center">
-            Elite Live Entertainment &middot; New York Metropolitan Area
+            {BAND.tagline}
           </p>
         </div>
       </div>

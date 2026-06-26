@@ -28,7 +28,7 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* ── Layer 4: Vignette overlay ── */}
+      {/* ── Vignette overlay ── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -38,7 +38,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* ── Layer 3: Content ── */}
+      {/* ── Content ── */}
       <div className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 max-w-5xl mx-auto">
         {/* Logo with glow */}
         <motion.div
@@ -57,10 +57,9 @@ export default function Hero() {
             }}
             aria-hidden="true"
           />
-          {/* NOTE: Place your logo.png in /public/logo.png */}
           <img
             src="/logo.png"
-            alt="The Cliffs — Elite Live Entertainment"
+            alt="The Cliffs — New Jersey's Most Versatile 8-Piece Cover Band"
             className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto object-contain drop-shadow-2xl"
             style={{ maxWidth: '400px' }}
             onError={(e) => {
@@ -77,36 +76,53 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Tagline */}
+        {/* Eyebrow tagline */}
         <motion.p
           className="font-display text-cliffs-pink tracking-[0.3em] text-sm md:text-base mb-4"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          ELITE LIVE ENTERTAINMENT
+          NEW JERSEY'S MOST VERSATILE 8-PIECE COVER BAND
         </motion.p>
 
         {/* Hero headline */}
         <motion.h1
-          className="font-display text-white leading-none tracking-wide mb-6"
+          className="font-display text-white leading-none tracking-wide mb-3"
           style={{ fontSize: 'clamp(2.6rem, 7vw, 7rem)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.7 }}
         >
-          We Don't Just Play.{' '}
-          <span className="text-cliffs-pink">We Electrify.</span>
+          New Jersey's Most{' '}
+          <span className="text-cliffs-pink">Wanted Band.</span>
         </motion.h1>
+
+        {/* Live indicator */}
+        <motion.div
+          className="flex items-center gap-2 mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.55, duration: 0.6 }}
+        >
+          <span
+            className="w-2.5 h-2.5 rounded-full bg-cliffs-pink flex-shrink-0"
+            style={{ animation: 'pulse 2s cubic-bezier(0.4,0,0.6,1) infinite' }}
+            aria-hidden="true"
+          />
+          <span className="text-white/60 font-body text-sm tracking-wide">
+            Performing this week in NJ
+          </span>
+        </motion.div>
 
         {/* Subtext */}
         <motion.p
-          className="text-white/60 font-body text-base md:text-lg mb-10 tracking-wider"
+          className="text-white/60 font-body text-base md:text-lg mb-10 tracking-wider max-w-xl"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          Available for Weddings · Corporate Events · Private Celebrations
+          Weddings · Private Parties · Corporate Events
         </motion.p>
 
         {/* CTA Buttons */}

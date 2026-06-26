@@ -1,11 +1,10 @@
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import About from './components/About';
+import Services from './components/Services';
 import Videos from './components/Videos';
-import Songs from './components/Songs';
 import Shows from './components/Shows';
 import Reviews from './components/Reviews';
-import Gallery from './components/Gallery';
 import Booking from './components/Booking';
 import Footer from './components/Footer';
 
@@ -16,11 +15,10 @@ export default function App() {
       <main>
         <Hero />
         <About />
+        <Services />
         <Videos />
-        <Songs />
-        <Shows />
         <Reviews />
-        <Gallery />
+        <Shows />
         <Booking />
       </main>
       <Footer />

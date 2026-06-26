@@ -1,22 +1,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { BAND } from '../data/content';
-
-const WHY_CHOOSE = [
-  { title: 'Unmatched Repertoire', desc: '50+ songs across five decades — from classics to current chart-toppers.' },
-  { title: 'Two Lead Vocalists', desc: 'Powerful male and female vocalists who can handle any genre flawlessly.' },
-  { title: 'Fully Self-Contained', desc: 'Professional sound system, lighting rig, and stage setup included.' },
-  { title: 'Custom Set Planning', desc: 'We work with you to craft the perfect setlist for your specific event.' },
-];
+import { BOOKING_AGENT, BAND, QUALITIES } from '../data/content';
 
 type FormData = {
   name: string;
   email: string;
   phone: string;
   eventType: string;
-  eventDate: string;
-  venue: string;
-  guestCount: string;
+  eventDateTime: string;
+  venueCityState: string;
   message: string;
 };
 
@@ -26,9 +18,8 @@ export default function Booking() {
     email: '',
     phone: '',
     eventType: '',
-    eventDate: '',
-    venue: '',
-    guestCount: '',
+    eventDateTime: '',
+    venueCityState: '',
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
@@ -41,7 +32,6 @@ export default function Booking() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate form submission — replace with actual API call
     await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
     setSubmitted(true);
@@ -70,35 +60,26 @@ export default function Booking() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left: Contact info + why choose */}
+          {/* Left: Booking agent info + why choose */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            {/* Contact details */}
-            <div className="mb-10">
-              <h3 className="font-display text-white text-2xl md:text-3xl mb-6">
-                Let's Talk About Your Event
+            {/* Exclusive Booking Agent block */}
+            <div className="mb-10 p-7 rounded-2xl border border-cliffs-pink/20" style={{ backgroundColor: '#1A1A1A' }}>
+              <p className="text-cliffs-pink font-display tracking-widest text-xs mb-4">
+                {BOOKING_AGENT.title}
+              </p>
+              <h3 className="font-display text-white text-2xl md:text-3xl mb-1">
+                {BOOKING_AGENT.name}
               </h3>
-              <div className="flex flex-col gap-4">
+              <p className="text-white/50 font-body text-sm mb-5">{BOOKING_AGENT.company}</p>
+
+              <div className="flex flex-col gap-4 mb-6">
                 <a
-                  href={`mailto:${BAND.email}`}
-                  className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group cursor-pointer"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-cliffs-pink/10 border border-cliffs-pink/20 flex items-center justify-center flex-shrink-0 group-hover:bg-cliffs-pink/20 transition-colors">
-                    <svg className="w-5 h-5 text-cliffs-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-xs text-white/30 mb-0.5">Email</p>
-                    <p className="font-body">{BAND.email}</p>
-                  </div>
-                </a>
-                <a
-                  href={`tel:${BAND.phone}`}
+                  href={`tel:${BOOKING_AGENT.phone}`}
                   className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group cursor-pointer"
                 >
                   <div className="w-12 h-12 rounded-xl bg-cliffs-pink/10 border border-cliffs-pink/20 flex items-center justify-center flex-shrink-0 group-hover:bg-cliffs-pink/20 transition-colors">
@@ -108,9 +89,25 @@ export default function Booking() {
                   </div>
                   <div>
                     <p className="text-xs text-white/30 mb-0.5">Phone</p>
-                    <p className="font-body">{BAND.phone}</p>
+                    <p className="font-body">{BOOKING_AGENT.phone}</p>
                   </div>
                 </a>
+
+                <a
+                  href={`mailto:${BOOKING_AGENT.email}`}
+                  className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group cursor-pointer"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-cliffs-pink/10 border border-cliffs-pink/20 flex items-center justify-center flex-shrink-0 group-hover:bg-cliffs-pink/20 transition-colors">
+                    <svg className="w-5 h-5 text-cliffs-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/30 mb-0.5">Email</p>
+                    <p className="font-body">{BOOKING_AGENT.email}</p>
+                  </div>
+                </a>
+
                 <div className="flex items-center gap-4 text-white/70">
                   <div className="w-12 h-12 rounded-xl bg-cliffs-pink/10 border border-cliffs-pink/20 flex items-center justify-center flex-shrink-0">
                     <svg className="w-5 h-5 text-cliffs-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -119,18 +116,28 @@ export default function Booking() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-xs text-white/30 mb-0.5">Service Area</p>
+                    <p className="text-xs text-white/30 mb-0.5">Location</p>
                     <p className="font-body">{BAND.location}</p>
                   </div>
                 </div>
               </div>
+
+              {/* Booking notes */}
+              <div className="border-t border-white/8 pt-5 flex flex-col gap-2.5">
+                {BOOKING_AGENT.notes.map((note, i) => (
+                  <div key={i} className="flex gap-2.5 items-start">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cliffs-pink mt-2 flex-shrink-0" aria-hidden="true" />
+                    <p className="text-white/45 font-body text-xs leading-relaxed">{note}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Why choose */}
+            {/* Why Choose The Cliffs */}
             <div>
               <h4 className="font-display text-white text-xl mb-5 tracking-wide">Why Choose The Cliffs</h4>
-              <div className="flex flex-col gap-4">
-                {WHY_CHOOSE.map((item, i) => (
+              <div className="flex flex-col gap-5">
+                {QUALITIES.map((item, i) => (
                   <motion.div
                     key={i}
                     className="flex gap-4 items-start"
@@ -142,7 +149,7 @@ export default function Booking() {
                     <div className="w-1.5 h-1.5 rounded-full bg-cliffs-pink mt-2.5 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <p className="text-white font-semibold font-body text-sm mb-0.5">{item.title}</p>
-                      <p className="text-white/50 font-body text-sm leading-relaxed">{item.desc}</p>
+                      <p className="text-white/50 font-body text-sm leading-relaxed">{item.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -166,7 +173,7 @@ export default function Booking() {
                 </div>
                 <h3 className="font-display text-white text-2xl mb-3">Inquiry Sent!</h3>
                 <p className="text-white/60 font-body text-base">
-                  Thank you for reaching out. We'll be in touch within 24 hours to discuss your event.
+                  Thank you for reaching out to Scott at 107 Productions. You'll hear back within 24 hours (Monday if sent on a weekend).
                 </p>
               </div>
             ) : (
@@ -194,6 +201,22 @@ export default function Booking() {
                     />
                   </div>
 
+                  {/* Phone */}
+                  <div>
+                    <label htmlFor="phone" className="block text-sm text-white/60 font-body mb-1.5">
+                      Phone
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={form.phone}
+                      onChange={handleChange}
+                      placeholder="(908) 000-0000"
+                      className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/25 text-sm font-body focus:outline-none focus:border-cliffs-pink transition-colors duration-200"
+                    />
+                  </div>
+
                   {/* Email */}
                   <div>
                     <label htmlFor="email" className="block text-sm text-white/60 font-body mb-1.5">
@@ -211,26 +234,10 @@ export default function Booking() {
                     />
                   </div>
 
-                  {/* Phone */}
-                  <div>
-                    <label htmlFor="phone" className="block text-sm text-white/60 font-body mb-1.5">
-                      Phone
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="(555) 000-0000"
-                      className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/25 text-sm font-body focus:outline-none focus:border-cliffs-pink transition-colors duration-200"
-                    />
-                  </div>
-
                   {/* Event Type */}
                   <div>
                     <label htmlFor="eventType" className="block text-sm text-white/60 font-body mb-1.5">
-                      Event Type <span className="text-cliffs-pink" aria-hidden="true">*</span>
+                      Type of Event <span className="text-cliffs-pink" aria-hidden="true">*</span>
                     </label>
                     <select
                       id="eventType"
@@ -244,67 +251,48 @@ export default function Booking() {
                       <option value="Wedding">Wedding</option>
                       <option value="Corporate">Corporate Event</option>
                       <option value="Private">Private Party</option>
-                      <option value="Gala">Gala / Fundraiser</option>
+                      <option value="Birthday">Birthday / Graduation</option>
+                      <option value="Holiday">Holiday Party</option>
                       <option value="Other">Other</option>
                     </select>
                   </div>
 
-                  {/* Event Date */}
+                  {/* Date/Time of Event */}
                   <div>
-                    <label htmlFor="eventDate" className="block text-sm text-white/60 font-body mb-1.5">
-                      Event Date
+                    <label htmlFor="eventDateTime" className="block text-sm text-white/60 font-body mb-1.5">
+                      Date / Time of Event
                     </label>
                     <input
-                      id="eventDate"
-                      name="eventDate"
-                      type="date"
-                      value={form.eventDate}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white text-sm font-body focus:outline-none focus:border-cliffs-pink transition-colors duration-200 [color-scheme:dark]"
-                    />
-                  </div>
-
-                  {/* Venue */}
-                  <div>
-                    <label htmlFor="venue" className="block text-sm text-white/60 font-body mb-1.5">
-                      Venue / Location
-                    </label>
-                    <input
-                      id="venue"
-                      name="venue"
+                      id="eventDateTime"
+                      name="eventDateTime"
                       type="text"
-                      value={form.venue}
+                      value={form.eventDateTime}
                       onChange={handleChange}
-                      placeholder="The Plaza Hotel, NYC"
+                      placeholder="e.g. Oct 15, 2026 at 7:00 PM"
                       className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/25 text-sm font-body focus:outline-none focus:border-cliffs-pink transition-colors duration-200"
                     />
                   </div>
 
-                  {/* Guest Count */}
-                  <div>
-                    <label htmlFor="guestCount" className="block text-sm text-white/60 font-body mb-1.5">
-                      Estimated Guest Count
+                  {/* Venue Name / City / State */}
+                  <div className="sm:col-span-2">
+                    <label htmlFor="venueCityState" className="block text-sm text-white/60 font-body mb-1.5">
+                      Venue Name / City / State
                     </label>
-                    <select
-                      id="guestCount"
-                      name="guestCount"
-                      value={form.guestCount}
+                    <input
+                      id="venueCityState"
+                      name="venueCityState"
+                      type="text"
+                      value={form.venueCityState}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-white/10 bg-[#1A1A1A] text-white text-sm font-body focus:outline-none focus:border-cliffs-pink transition-colors duration-200 cursor-pointer"
-                    >
-                      <option value="">Select range</option>
-                      <option value="under50">Under 50</option>
-                      <option value="50-100">50–100</option>
-                      <option value="100-200">100–200</option>
-                      <option value="200-300">200–300</option>
-                      <option value="300+">300+</option>
-                    </select>
+                      placeholder="e.g. The Columns · Avon-by-the-Sea, NJ"
+                      className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/25 text-sm font-body focus:outline-none focus:border-cliffs-pink transition-colors duration-200"
+                    />
                   </div>
 
                   {/* Message */}
                   <div className="sm:col-span-2">
                     <label htmlFor="message" className="block text-sm text-white/60 font-body mb-1.5">
-                      Tell Us About Your Event
+                      Message
                     </label>
                     <textarea
                       id="message"
@@ -339,7 +327,7 @@ export default function Booking() {
                 </motion.button>
 
                 <p className="text-center text-white/30 text-xs font-body mt-4">
-                  We typically respond within 24 hours
+                  Please include "The Cliffs" in the subject of your email. We respond within 24 hours on business days.
                 </p>
               </form>
             )}
