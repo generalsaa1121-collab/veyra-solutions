@@ -22,11 +22,11 @@ const T = {
 /* ─── Spotlight beams (pivot = viewport-left %) ─── */
 const SPOTS = [
   { pivot: 7,  w: 255, color: '#FF2D78', alpha: 0.52, blur: 22, anim: 'spotSweep1', dur: 10.0 },
-  { pivot: 20, w: 208, color: '#FFF8E0', alpha: 0.30, blur: 28, anim: 'spotSweep2', dur: 13.5, desktop: true },
+  { pivot: 20, w: 240, color: '#FFF8E0', alpha: 0.40, blur: 28, anim: 'spotSweep2', dur: 13.5, desktop: true },
   { pivot: 36, w: 375, color: '#FF2D78', alpha: 0.39, blur: 32, anim: 'spotSweep3', dur: 16.0 },
-  { pivot: 51, w: 445, color: '#FFF8E0', alpha: 0.24, blur: 36, anim: 'spotSweep4', dur: 11.5, desktop: true },
+  { pivot: 51, w: 445, color: '#FFF8E0', alpha: 0.30, blur: 36, anim: 'spotSweep4', dur: 11.5, desktop: true },
   { pivot: 66, w: 268, color: '#C9A84C', alpha: 0.40, blur: 24, anim: 'spotSweep5', dur: 14.0 },
-  { pivot: 81, w: 232, color: '#FF2D78', alpha: 0.36, blur: 19, anim: 'spotSweep6', dur:  9.0, desktop: true },
+  { pivot: 81, w: 260, color: '#FF2D78', alpha: 0.44, blur: 19, anim: 'spotSweep6', dur:  9.0, desktop: true },
   { pivot: 93, w: 192, color: '#FFF8E0', alpha: 0.20, blur: 22, anim: 'spotSweep7', dur: 12.0 },
 ];
 
@@ -106,6 +106,12 @@ export default function Hero() {
       ────────────────────────────────────────────── */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         {spots.map((s, i) => (
+          /*
+           * GPU compositing fix: filter:blur() on an animated element forces
+           * main-thread rasterization every frame, killing performance on desktop.
+           * Solution: outer wrapper carries ONLY transform+opacity (GPU-compositable);
+           * inner div holds the gradient+clipPath+blur (rasterized once into the layer).
+           */
           <div
             key={i}
             style={{
@@ -114,19 +120,26 @@ export default function Hero() {
               left: `calc(${s.pivot}% - ${s.w / 2}px)`,
               width: `${s.w}px`,
               height: '110%',
-              background: `linear-gradient(to bottom,
-                ${s.color}${Math.round(s.alpha * 255).toString(16).padStart(2,'0')} 0%,
-                ${s.color}3C 40%,
-                ${s.color}14 68%,
-                transparent 100%)`,
-              clipPath: 'polygon(46% 0%, 54% 0%, 88% 100%, 12% 100%)',
-              filter: `blur(${s.blur}px)`,
               transformOrigin: 'top center',
-              willChange: 'transform',
+              willChange: 'transform, opacity',
               animation: `${s.anim} ${s.dur}s ease-in-out infinite`,
               pointerEvents: 'none',
             }}
-          />
+          >
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                background: `linear-gradient(to bottom,
+                  ${s.color}${Math.round(s.alpha * 255).toString(16).padStart(2,'0')} 0%,
+                  ${s.color}3C 40%,
+                  ${s.color}14 68%,
+                  transparent 100%)`,
+                clipPath: 'polygon(46% 0%, 54% 0%, 88% 100%, 12% 100%)',
+                filter: `blur(${s.blur}px)`,
+              }}
+            />
+          </div>
         ))}
       </div>
 
