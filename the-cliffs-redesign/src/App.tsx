@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import Videos from './components/Videos';
+import Songs from './components/Songs';
 import Shows from './components/Shows';
 import Reviews from './components/Reviews';
 import Booking from './components/Booking';
@@ -17,6 +18,7 @@ export default function App() {
         <About />
         <Services />
         <Videos />
+        <Songs />
         <Reviews />
         <Shows />
         <Booking />
