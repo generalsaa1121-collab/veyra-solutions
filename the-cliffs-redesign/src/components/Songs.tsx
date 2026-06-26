@@ -388,7 +388,7 @@ export default function Songs() {
         {/* ── Sticky filter bar ─────────────────────────────────────────────── */}
         <div
           className="sticky z-20 py-3 mb-8 border-b border-white/6"
-          style={{ top: '64px', backgroundColor: 'rgba(5,5,5,0.97)' }}
+          style={{ top: '72px', backgroundColor: 'rgba(5,5,5,0.97)' }}
         >
           {/* Search row */}
           <div className="flex items-center gap-3 mb-3">

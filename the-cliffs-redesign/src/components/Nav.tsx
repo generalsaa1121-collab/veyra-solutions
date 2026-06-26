@@ -32,29 +32,29 @@ export default function Nav() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-black/88 backdrop-blur-md border-b border-white/5'
-            : 'bg-gradient-to-b from-black/70 to-transparent'
+            ? 'bg-black/90 backdrop-blur-md border-b border-white/6'
+            : 'bg-gradient-to-b from-black/78 to-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* 3-col grid: logo left | links centered | cta right */}
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 md:h-[4.5rem]">
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center h-[4.5rem] md:h-[5.5rem]">
 
             {/* Logo */}
             <a
               href="#hero"
               onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
-              className="cursor-pointer"
+              className="cursor-pointer pl-1.5 md:pl-2"
               aria-label="The Cliffs - Home"
             >
               <img
                 src={`${import.meta.env.BASE_URL}logo.png`}
                 alt="The Cliffs logo"
-                className="h-11 md:h-14 w-auto object-contain"
+                className="h-[3.5rem] md:h-[4.5rem] w-auto object-contain"
                 style={{
                   filter: [
-                    'drop-shadow(0 0 16px rgba(255,255,255,0.60))',
-                    'drop-shadow(0 2px 8px rgba(0,0,0,0.90))',
+                    'drop-shadow(0 0 20px rgba(255,255,255,0.65))',
+                    'drop-shadow(0 2px 10px rgba(0,0,0,0.95))',
                   ].join(' '),
                 }}
                 onError={(e) => {
