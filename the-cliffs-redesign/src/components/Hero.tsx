@@ -32,40 +32,26 @@ const SPOTS = [
 
 /* ─── Particles ─── */
 const PARTICLES = [
-  { left: '3%',  s:'2px', bg:'#fff',    op:0.50, a:'floatUp 9.2s ease-in infinite 0.0s'  },
-  { left: '8%',  s:'2px', bg:'#FF2D78', op:0.60, a:'floatUp 12.5s ease-in infinite 1.3s' },
-  { left: '13%', s:'2px', bg:'#fff',    op:0.45, a:'floatUp 8.8s ease-in infinite 2.7s'  },
-  { left: '19%', s:'3px', bg:'#C9A84C', op:0.55, a:'floatUp 11.1s ease-in infinite 0.7s' },
-  { left: '25%', s:'2px', bg:'#fff',    op:0.50, a:'floatUp 7.6s ease-in infinite 3.4s', desktop: true },
-  { left: '31%', s:'2px', bg:'#FF2D78', op:0.60, a:'floatUp 10.3s ease-in infinite 1.9s' },
-  { left: '37%', s:'3px', bg:'#fff',    op:0.55, a:'floatUp 13.7s ease-in infinite 0.4s', desktop: true },
-  { left: '43%', s:'2px', bg:'#C9A84C', op:0.50, a:'floatUp 8.9s ease-in infinite 2.2s'  },
-  { left: '49%', s:'2px', bg:'#fff',    op:0.45, a:'floatUp 11.2s ease-in infinite 4.1s', desktop: true },
-  { left: '55%', s:'3px', bg:'#FF2D78', op:0.60, a:'floatUp 9.4s ease-in infinite 1.1s'  },
-  { left: '61%', s:'2px', bg:'#fff',    op:0.45, a:'floatUp 14.0s ease-in infinite 3.8s', desktop: true },
-  { left: '67%', s:'2px', bg:'#C9A84C', op:0.55, a:'floatUp 7.8s ease-in infinite 0.9s'  },
-  { left: '72%', s:'3px', bg:'#fff',    op:0.50, a:'floatUp 10.6s ease-in infinite 2.5s', desktop: true },
-  { left: '78%', s:'2px', bg:'#FF2D78', op:0.60, a:'floatUp 12.3s ease-in infinite 5.2s' },
-  { left: '83%', s:'2px', bg:'#fff',    op:0.55, a:'floatUp 8.7s ease-in infinite 1.7s', desktop: true },
-  { left: '88%', s:'3px', bg:'#C9A84C', op:0.50, a:'floatUp 11.9s ease-in infinite 3.1s' },
-  { left: '93%', s:'2px', bg:'#fff',    op:0.55, a:'floatUp 9.1s ease-in infinite 4.6s', desktop: true },
-  { left: '97%', s:'2px', bg:'#FF2D78', op:0.45, a:'floatUp 13.4s ease-in infinite 0.2s' },
-  { left: '11%', s:'2px', bg:'#FFF8E0', op:0.40, a:'floatUp 10.0s ease-in infinite 2.9s', desktop: true },
-  { left: '28%', s:'3px', bg:'#FF2D78', op:0.50, a:'floatUp 8.5s ease-in infinite 6.0s'  },
-  { left: '46%', s:'2px', bg:'#fff',    op:0.45, a:'floatUp 15.2s ease-in infinite 1.4s', desktop: true },
-  { left: '59%', s:'2px', bg:'#C9A84C', op:0.55, a:'floatUp 9.8s ease-in infinite 4.8s'  },
-  { left: '74%', s:'3px', bg:'#FF2D78', op:0.60, a:'floatUp 11.5s ease-in infinite 2.3s', desktop: true },
-  { left: '90%', s:'2px', bg:'#FFF8E0', op:0.45, a:'floatUp 8.3s ease-in infinite 3.7s'  },
+  { left: '5%',  s:'2px', bg:'#fff',    op:0.45, a:'floatUp 9.2s ease-in infinite 0.0s'  },
+  { left: '14%', s:'2px', bg:'#FF2D78', op:0.55, a:'floatUp 12.5s ease-in infinite 1.3s' },
+  { left: '23%', s:'2px', bg:'#fff',    op:0.40, a:'floatUp 8.8s ease-in infinite 2.7s'  },
+  { left: '33%', s:'3px', bg:'#C9A84C', op:0.50, a:'floatUp 11.1s ease-in infinite 0.7s' },
+  { left: '43%', s:'2px', bg:'#FF2D78', op:0.55, a:'floatUp 10.3s ease-in infinite 1.9s', desktop: true },
+  { left: '52%', s:'2px', bg:'#fff',    op:0.45, a:'floatUp 7.6s ease-in infinite 3.4s'  },
+  { left: '62%', s:'3px', bg:'#fff',    op:0.50, a:'floatUp 13.7s ease-in infinite 0.4s', desktop: true },
+  { left: '71%', s:'2px', bg:'#C9A84C', op:0.45, a:'floatUp 8.9s ease-in infinite 2.2s'  },
+  { left: '80%', s:'2px', bg:'#FF2D78', op:0.55, a:'floatUp 9.4s ease-in infinite 1.1s', desktop: true },
+  { left: '89%', s:'3px', bg:'#fff',    op:0.45, a:'floatUp 11.2s ease-in infinite 3.8s' },
+  { left: '96%', s:'2px', bg:'#C9A84C', op:0.50, a:'floatUp 7.8s ease-in infinite 0.9s'  },
+  { left: '28%', s:'2px', bg:'#FFF8E0', op:0.35, a:'floatUp 10.0s ease-in infinite 2.9s', desktop: true },
 ];
 
 /* ─── Lens flares at each light-source position ─── */
 const FLARES = [
   { left: '7%',  sz: 5,  c: '#FF2D78', a: 'lensFlare 3.8s ease-in-out infinite 0.0s'  },
-  { left: '20%', sz: 7,  c: '#FFF8E0', a: 'lensFlare2 5.1s ease-in-out infinite 1.2s', desktop: true },
   { left: '36%', sz: 9,  c: '#FF2D78', a: 'lensFlare 4.5s ease-in-out infinite 0.5s'  },
-  { left: '51%', sz: 10, c: '#FFF8E0', a: 'lensFlare2 6.2s ease-in-out infinite 1.8s', desktop: true },
+  { left: '51%', sz: 8,  c: '#FFF8E0', a: 'lensFlare2 6.2s ease-in-out infinite 1.8s', desktop: true },
   { left: '66%', sz: 7,  c: '#C9A84C', a: 'lensFlare 3.5s ease-in-out infinite 2.5s'  },
-  { left: '81%', sz: 6,  c: '#FF2D78', a: 'lensFlare2 4.8s ease-in-out infinite 0.8s', desktop: true },
   { left: '93%', sz: 4,  c: '#FFF8E0', a: 'lensFlare 5.5s ease-in-out infinite 3.1s'  },
 ];
 
@@ -170,24 +156,28 @@ export default function Hero() {
           position:'absolute', top:'3%', left:'18%', width:'64%', height:'68%',
           background:'radial-gradient(ellipse, rgba(255,248,218,0.13) 0%, transparent 62%)',
           filter:'blur(55px)',
+          willChange:'opacity, transform',
           animation:'hazePulse 7s ease-in-out infinite',
         }} />
         <div style={{
           position:'absolute', top:0, left:'-18%', width:'68%', height:'72%',
           background:'radial-gradient(ellipse, rgba(255,45,120,0.11) 0%, transparent 62%)',
           filter:'blur(60px)',
+          willChange:'opacity, transform',
           animation:'hazeShift 11s ease-in-out infinite',
         }} />
         {!isMobile && <div style={{
           position:'absolute', top:0, right:'-18%', width:'65%', height:'68%',
           background:'radial-gradient(ellipse, rgba(201,168,76,0.09) 0%, transparent 62%)',
           filter:'blur(60px)',
+          willChange:'opacity, transform',
           animation:'hazeShift 9s ease-in-out infinite 2.2s',
         }} />}
         {!isMobile && <div style={{
           position:'absolute', bottom:0, left:'8%', right:'8%', height:'52%',
           background:'radial-gradient(ellipse, rgba(255,45,120,0.07) 0%, transparent 58%)',
           filter:'blur(50px)',
+          willChange:'opacity, transform',
           animation:'hazeBreath 8s ease-in-out infinite 1s',
         }} />}
       </div>
@@ -262,47 +252,33 @@ export default function Hero() {
             ease: [0.14, 1, 0.34, 1],
           }}
         >
-          {/* Inner: float loop (starts after reveal completes) */}
-          <motion.div
-            animate={{ y: [0, -11, 0] }}
-            transition={{
-              duration: 6.5,
-              ease: 'easeInOut',
-              repeat: Infinity,
-              delay: 3.2,
-              repeatType: 'loop',
-            }}
-          >
-            <div style={{ position: 'relative', display: 'inline-block' }}>
-
-              {/* The official logo — unmodified */}
-              <img
-                src={`${import.meta.env.BASE_URL}logo.png`}
-                alt="The Cliffs — New Jersey's Most Versatile 8-Piece Cover Band"
-                style={{
-                  width: 'min(540px, 88vw)',
-                  objectFit: 'contain',
-                  display: 'block',
-                  filter: [
-                    'drop-shadow(0 0 28px rgba(255,255,255,0.32))',
-                    'drop-shadow(0 0 50px rgba(255,45,120,0.42))',
-                    'drop-shadow(0 14px 40px rgba(0,0,0,0.96))',
-                  ].join(' '),
-                }}
-                onError={(e) => {
-                  const el = e.currentTarget as HTMLImageElement;
-                  el.style.display = 'none';
-                  const p = el.parentElement;
-                  if (p && !p.querySelector('.hero-logo-text')) {
-                    const fb = document.createElement('div');
-                    fb.className = 'hero-logo-text';
-                    fb.innerHTML = `<div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,11vw,8rem);color:white;letter-spacing:8px;line-height:1;text-shadow:0 0 60px rgba(255,45,120,0.70),0 0 120px rgba(255,45,120,0.30)">THE CLIFFS</div>`;
-                    p.appendChild(fb);
-                  }
-                }}
-              />
-            </div>
-          </motion.div>
+          <div style={{ position: 'relative', display: 'inline-block' }}>
+            <img
+              src={`${import.meta.env.BASE_URL}logo.png`}
+              alt="The Cliffs — New Jersey's Most Versatile 8-Piece Cover Band"
+              style={{
+                width: 'min(540px, 88vw)',
+                objectFit: 'contain',
+                display: 'block',
+                filter: [
+                  'drop-shadow(0 0 28px rgba(255,255,255,0.32))',
+                  'drop-shadow(0 0 50px rgba(255,45,120,0.42))',
+                  'drop-shadow(0 14px 40px rgba(0,0,0,0.96))',
+                ].join(' '),
+              }}
+              onError={(e) => {
+                const el = e.currentTarget as HTMLImageElement;
+                el.style.display = 'none';
+                const p = el.parentElement;
+                if (p && !p.querySelector('.hero-logo-text')) {
+                  const fb = document.createElement('div');
+                  fb.className = 'hero-logo-text';
+                  fb.innerHTML = `<div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,11vw,8rem);color:white;letter-spacing:8px;line-height:1;text-shadow:0 0 60px rgba(255,45,120,0.70),0 0 120px rgba(255,45,120,0.30)">THE CLIFFS</div>`;
+                  p.appendChild(fb);
+                }
+              }}
+            />
+          </div>
         </motion.div>
 
         {/* ── Eyebrow ── */}

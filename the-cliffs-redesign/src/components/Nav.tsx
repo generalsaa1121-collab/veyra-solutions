@@ -23,58 +23,54 @@ export default function Nav() {
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
     const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-black/90 backdrop-blur-md border-b border-white/5' : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? 'bg-black/88 backdrop-blur-md border-b border-white/5'
+            : 'bg-gradient-to-b from-black/70 to-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          {/* 3-col grid: logo left | links centered | cta right */}
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 md:h-[4.5rem]">
+
             {/* Logo */}
             <a
               href="#hero"
               onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
-              className="flex-shrink-0 cursor-pointer"
+              className="cursor-pointer"
               aria-label="The Cliffs - Home"
             >
-              <div
+              <img
+                src={`${import.meta.env.BASE_URL}logo.png`}
+                alt="The Cliffs logo"
+                className="h-11 md:h-14 w-auto object-contain"
                 style={{
-                  padding: '4px 10px',
-                  borderRadius: '8px',
-                  background: 'rgba(255,255,255,0.10)',
-                  backdropFilter: 'blur(8px)',
+                  filter: [
+                    'drop-shadow(0 0 16px rgba(255,255,255,0.60))',
+                    'drop-shadow(0 2px 8px rgba(0,0,0,0.90))',
+                  ].join(' '),
                 }}
-              >
-                <img
-                  src={`${import.meta.env.BASE_URL}logo.png`}
-                  alt="The Cliffs logo"
-                  className="h-10 md:h-12 w-auto object-contain"
-                  style={{
-                    filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.45)) drop-shadow(0 2px 8px rgba(0,0,0,0.70))',
-                  }}
-                  onError={(e) => {
-                    const target = e.currentTarget as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent && !parent.querySelector('.logo-fallback')) {
-                      const fallback = document.createElement('div');
-                      fallback.className = 'logo-fallback';
-                      fallback.innerHTML = `<span style="font-family:\'Bebas Neue\',sans-serif;font-size:1.6rem;color:white;letter-spacing:2px;">THE CLIFFS</span>`;
-                      parent.appendChild(fallback);
-                    }
-                  }}
-                />
-              </div>
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.style.display = 'none';
+                  const parent = target.parentElement;
+                  if (parent && !parent.querySelector('.logo-fallback')) {
+                    const fallback = document.createElement('div');
+                    fallback.className = 'logo-fallback';
+                    fallback.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:1.75rem;color:white;letter-spacing:2px;text-shadow:0 0 20px rgba(255,255,255,0.5)">THE CLIFFS</span>`;
+                    parent.appendChild(fallback);
+                  }
+                }}
+              />
             </a>
 
-            {/* Desktop nav links */}
+            {/* Desktop nav links — centered */}
             <div className="hidden lg:flex items-center gap-6 xl:gap-8">
               {NAV_LINKS.map((link) => (
                 <a
@@ -87,28 +83,31 @@ export default function Nav() {
                   <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-cliffs-pink transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
+            </div>
+
+            {/* Right: Book Now + hamburger */}
+            <div className="flex items-center justify-end gap-3">
               <motion.a
                 href="#booking"
                 onClick={(e) => { e.preventDefault(); handleNavClick('#booking'); }}
-                className="px-5 py-2.5 bg-cliffs-pink text-white text-sm font-semibold rounded-full cursor-pointer hover:bg-pink-500 transition-colors duration-200"
+                className="hidden lg:block px-5 py-2.5 bg-cliffs-pink text-white text-sm font-semibold rounded-full cursor-pointer hover:bg-pink-500 transition-colors duration-200"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
               >
                 Book Now
               </motion.a>
-            </div>
 
-            {/* Mobile hamburger */}
-            <button
-              className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 cursor-pointer"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={mobileOpen}
-            >
-              <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block w-6 h-0.5 bg-white transition-all duration-200 ${mobileOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-            </button>
+              <button
+                className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 cursor-pointer"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileOpen}
+              >
+                <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`block w-6 h-0.5 bg-white transition-all duration-200 ${mobileOpen ? 'opacity-0' : ''}`} />
+                <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              </button>
+            </div>
           </div>
         </div>
       </nav>
