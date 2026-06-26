@@ -169,27 +169,27 @@ export default function Hero() {
         <div style={{
           position:'absolute', top:'3%', left:'18%', width:'64%', height:'68%',
           background:'radial-gradient(ellipse, rgba(255,248,218,0.13) 0%, transparent 62%)',
-          filter:'blur(80px)',
+          filter:'blur(55px)',
           animation:'hazePulse 7s ease-in-out infinite',
         }} />
         <div style={{
           position:'absolute', top:0, left:'-18%', width:'68%', height:'72%',
           background:'radial-gradient(ellipse, rgba(255,45,120,0.11) 0%, transparent 62%)',
-          filter:'blur(95px)',
+          filter:'blur(60px)',
           animation:'hazeShift 11s ease-in-out infinite',
         }} />
-        <div style={{
+        {!isMobile && <div style={{
           position:'absolute', top:0, right:'-18%', width:'65%', height:'68%',
           background:'radial-gradient(ellipse, rgba(201,168,76,0.09) 0%, transparent 62%)',
-          filter:'blur(88px)',
+          filter:'blur(60px)',
           animation:'hazeShift 9s ease-in-out infinite 2.2s',
-        }} />
-        <div style={{
+        }} />}
+        {!isMobile && <div style={{
           position:'absolute', bottom:0, left:'8%', right:'8%', height:'52%',
           background:'radial-gradient(ellipse, rgba(255,45,120,0.07) 0%, transparent 58%)',
-          filter:'blur(65px)',
+          filter:'blur(50px)',
           animation:'hazeBreath 8s ease-in-out infinite 1s',
-        }} />
+        }} />}
       </div>
 
       {/* ──────────────────────────────────────────────
@@ -283,14 +283,11 @@ export default function Hero() {
                   width: 'min(540px, 88vw)',
                   objectFit: 'contain',
                   display: 'block',
-                  /* CSS animation overrides this static filter once it fires.
-                     The static values show during the 2.8s pre-animation delay. */
                   filter: [
                     'drop-shadow(0 0 28px rgba(255,255,255,0.32))',
                     'drop-shadow(0 0 50px rgba(255,45,120,0.42))',
                     'drop-shadow(0 14px 40px rgba(0,0,0,0.96))',
                   ].join(' '),
-                  animation: 'logoGlow 4s ease-in-out infinite 2.8s',
                 }}
                 onError={(e) => {
                   const el = e.currentTarget as HTMLImageElement;
@@ -302,25 +299,6 @@ export default function Hero() {
                     fb.innerHTML = `<div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,11vw,8rem);color:white;letter-spacing:8px;line-height:1;text-shadow:0 0 60px rgba(255,45,120,0.70),0 0 120px rgba(255,45,120,0.30)">THE CLIFFS</div>`;
                     p.appendChild(fb);
                   }
-                }}
-              />
-
-              {/* Reveal veil — a dark curtain the stage lights burn away.
-                  Starts opaque (logo hidden), lifts as spotlights sweep. */}
-              <motion.div
-                style={{
-                  position: 'absolute',
-                  inset: '-6px',
-                  background: '#0A0A0F',
-                  pointerEvents: 'none',
-                  borderRadius: '2px',
-                }}
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 0 }}
-                transition={{
-                  duration: 2.10,
-                  delay: 0.35,
-                  ease: [0.04, 0, 0.20, 1],
                 }}
               />
             </div>

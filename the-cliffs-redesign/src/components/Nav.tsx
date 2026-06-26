@@ -44,27 +44,34 @@ export default function Nav() {
               className="flex-shrink-0 cursor-pointer"
               aria-label="The Cliffs - Home"
             >
-              {/* NOTE: Place logo.png in /public/logo.png — user supplies actual file */}
-              <img
-                src={`${import.meta.env.BASE_URL}logo.png`}
-                alt="The Cliffs logo"
-                className="h-10 md:h-12 w-auto object-contain"
+              <div
                 style={{
-                  filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.25)) drop-shadow(0 2px 12px rgba(0,0,0,0.80))',
+                  padding: '4px 10px',
+                  borderRadius: '8px',
+                  background: 'rgba(255,255,255,0.10)',
+                  backdropFilter: 'blur(8px)',
                 }}
-                onError={(e) => {
-                  // Fallback if logo not yet provided
-                  const target = e.currentTarget as HTMLImageElement;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent && !parent.querySelector('.logo-fallback')) {
-                    const fallback = document.createElement('div');
-                    fallback.className = 'logo-fallback';
-                    fallback.innerHTML = `<span style="font-family:\'Bebas Neue\',sans-serif;font-size:1.6rem;color:white;letter-spacing:2px;">THE CLIFFS</span>`;
-                    parent.appendChild(fallback);
-                  }
-                }}
-              />
+              >
+                <img
+                  src={`${import.meta.env.BASE_URL}logo.png`}
+                  alt="The Cliffs logo"
+                  className="h-10 md:h-12 w-auto object-contain"
+                  style={{
+                    filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.45)) drop-shadow(0 2px 8px rgba(0,0,0,0.70))',
+                  }}
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent && !parent.querySelector('.logo-fallback')) {
+                      const fallback = document.createElement('div');
+                      fallback.className = 'logo-fallback';
+                      fallback.innerHTML = `<span style="font-family:\'Bebas Neue\',sans-serif;font-size:1.6rem;color:white;letter-spacing:2px;">THE CLIFFS</span>`;
+                      parent.appendChild(fallback);
+                    }
+                  }}
+                />
+              </div>
             </a>
 
             {/* Desktop nav links */}

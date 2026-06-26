@@ -31,12 +31,12 @@ In 2009, Matt joined the Lions, Jersey Shore band, Brian Kirk & the Jirks, and f
 Early in 2019, Matt and Kristin decided it was time for them to begin their own musical project, and affectionately named it "The Cliffs". The purpose of this project was to combine forces and create a band of all-stars, with a repertoire coming straight from the heart of every musician involved. Because of this, the very live dinner with unexpected musical guests and band members throughout their time in the band and in the crowd. Genres range from the classic hits of the 1960s to the most popular hits of today, making it nearly impossible to sit down. You'll be singing along with them all night! The Cliffs pride themselves in their ability to be heard the audience from the stage. You will feel like you're at a party with your closest buds, and hopefully, leave at the end of the night as lifelong friends. We look forward to sharing what we love with you!`;
 
 export const BAND_MEMBERS = [
-  { name: "Kristin Cardman", role: "Lead Vocals / Band Leader", leader: true },
-  { name: "Matt Cardman", role: "Trumpet / Vocals" },
-  { name: "Bryce Pippa", role: "Lead Guitar / Vocals" },
-  { name: "Cannie Cole", role: "Lead Vocals" },
-  { name: "Dylan Longthropher", role: "Bass / Vocals" },
-  { name: "Chris Popkins", role: "Drums" },
+  { name: "Kristen Cochran", role: "Lead Vocals / Band Leader", leader: true },
+  { name: "Matt Cochran", role: "Trumpet / Vocals" },
+  { name: "Bryan Rojas", role: "Lead Guitar / Vocals" },
+  { name: "Connor Closs", role: "Lead Vocals" },
+  { name: "Dylan Langschwager", role: "Bass / Vocals" },
+  { name: "Chris Paprota", role: "Drums" },
   { name: "Aidan Burke", role: "Keys" },
   { name: "Antonio Santiago", role: "Saxophone" },
 ];
