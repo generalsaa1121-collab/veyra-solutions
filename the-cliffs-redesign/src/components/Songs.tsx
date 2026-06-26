@@ -143,8 +143,10 @@ export default function Songs() {
   const [activeTag, setActiveTag] = useState<TagKey | null>(null);
   const [search, setSearch] = useState('');
 
-  const totalSongs = SONGS.length;
-  const totalMedleySongs = MEDLEYS.reduce((s, m) => s + m.songs.length, 0);
+  const medleySongsTotal = MEDLEYS.reduce((s, m) => s + m.songs.length, 0);
+  // 5 songs appear in both SONGS[] and a medley — subtract to avoid double-counting
+  const MEDLEY_CROSSOVER = 5;
+  const totalUnique = SONGS.length + medleySongsTotal - MEDLEY_CROSSOVER;
 
   const filteredSongs = useMemo(() => {
     const q = search.toLowerCase().trim();
@@ -212,10 +214,9 @@ export default function Songs() {
           {/* Stats */}
           <div className="flex flex-wrap items-center justify-center gap-3">
             {[
-              { value: `${totalSongs}+`, label: 'Songs' },
+              { value: `${totalUnique}+`, label: 'Songs' },
               { value: `${GENRE_ORDER.length}`, label: 'Genres' },
-              { value: `${MEDLEYS.length}`, label: 'Medleys' },
-              { value: `${totalMedleySongs}+`, label: 'Medley Songs' },
+              { value: `${MEDLEYS.length}`, label: 'Live Medleys' },
             ].map(({ value, label }) => (
               <div
                 key={label}
