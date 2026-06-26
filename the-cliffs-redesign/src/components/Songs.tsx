@@ -260,15 +260,17 @@ export default function Songs() {
     return map;
   }, []);
 
-  const featuredSongs = useMemo(
-    () => SONGS.filter((s) => s.tags?.some((t) => FEATURED_TAG_SET.has(t))),
+  // Default featured: 12 crowd-favorites as a highlight reel.
+  // Tag filter active: show every song with that tag (user made an intentional choice).
+  const crowdFavorites = useMemo(
+    () => SONGS.filter((s) => s.tags?.includes('crowd-favorite')),
     []
   );
 
   const filteredFeatured = useMemo(() => {
-    if (!activeTag) return featuredSongs;
-    return featuredSongs.filter((s) => s.tags?.includes(activeTag));
-  }, [featuredSongs, activeTag]);
+    if (!activeTag) return crowdFavorites.slice(0, 12);
+    return SONGS.filter((s) => s.tags?.includes(activeTag));
+  }, [crowdFavorites, activeTag]);
 
   // Search runs across the entire catalog regardless of mode
   const searchResults = useMemo(() => {
@@ -388,7 +390,7 @@ export default function Songs() {
         {/* ── Sticky filter bar ─────────────────────────────────────────────── */}
         <div
           className="sticky z-20 py-3 mb-8 border-b border-white/6"
-          style={{ top: '72px', backgroundColor: 'rgba(5,5,5,0.97)' }}
+          style={{ top: '80px', backgroundColor: 'rgba(5,5,5,0.97)' }}
         >
           {/* Search row */}
           <div className="flex items-center gap-3 mb-3">
