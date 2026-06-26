@@ -72,13 +72,15 @@ body {
 /* ─── Logo Glow Pulse ─── */
 @keyframes logoGlow {
   0%, 100% {
-    filter: drop-shadow(0 0 24px rgba(255,45,120,0.35))
-            drop-shadow(0 10px 35px rgba(0,0,0,0.95));
+    filter: drop-shadow(0 0 28px rgba(255,255,255,0.32))
+            drop-shadow(0 0 50px rgba(255,45,120,0.42))
+            drop-shadow(0 14px 40px rgba(0,0,0,0.96));
   }
   50% {
-    filter: drop-shadow(0 0 55px rgba(255,45,120,0.70))
-            drop-shadow(0 0 90px rgba(255,45,120,0.25))
-            drop-shadow(0 10px 35px rgba(0,0,0,0.95));
+    filter: drop-shadow(0 0 52px rgba(255,255,255,0.52))
+            drop-shadow(0 0 90px rgba(255,45,120,0.72))
+            drop-shadow(0 0 130px rgba(255,45,120,0.24))
+            drop-shadow(0 14px 40px rgba(0,0,0,0.96));
   }
 }
 

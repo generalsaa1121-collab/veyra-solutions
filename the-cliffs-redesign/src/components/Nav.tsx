@@ -49,6 +49,9 @@ export default function Nav() {
                 src={`${import.meta.env.BASE_URL}logo.png`}
                 alt="The Cliffs logo"
                 className="h-10 md:h-12 w-auto object-contain"
+                style={{
+                  filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.25)) drop-shadow(0 2px 12px rgba(0,0,0,0.80))',
+                }}
                 onError={(e) => {
                   // Fallback if logo not yet provided
                   const target = e.currentTarget as HTMLImageElement;
